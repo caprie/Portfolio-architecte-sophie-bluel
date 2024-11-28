@@ -1,15 +1,17 @@
+//----------RECUPERATION DES API ----------
+
 // Fonction pour récupérer les travaux depuis l'API
 async function getWorks() {
   // URL de l'API qui retourne les données des "works"
   const url = "http://localhost:5678/api/works";
   try {
-    // On va demander au serveur de nous envoyer les informations sur les travaux
+    // Demande au serveur de nous envoyer les informations sur les travaux
     const response = await fetch(url);
     // Vérifie si la réponse HTTP est correcte 
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`); // Si la réponse n'est pas bonne, on affiche un message d'erreur
     }
-    // On transforme la réponse en quelque chose que notre programme peut comprendre (json)
+    // transforme la réponse en quelque chose que notre programme peut comprendre (json)
     const works = await response.json();
     //console.log("Works récupérés :", works); // Affiche les travaux dans la console pour vérifier ce qu'on a reçu
     return works; // Retourne la liste des travaux
@@ -40,6 +42,8 @@ async function getCategories() {
   }
 }
 
+// --------------- CREATION ET AFFICHAGE DES CATEGORIES ----------
+
 // Fonction pour créer et afficher le menu des catégories
 async function createCategoryMenu() {
   // Récupère les catégories depuis l'API
@@ -49,6 +53,10 @@ async function createCategoryMenu() {
     return;
   }
 
+  // --------------------- AJOUT DES BUTTONS ET CATEGORIES --------------------
+
+  // -------------------- CONTAINER ------------------------
+
  // On trouve l'endroit où on va ajouter les boutons de catégories dans la page
   const portfolioSection = document.querySelector("#portfolio");
   // Crée dynamiquement un conteneur pour le menu des catégories
@@ -56,6 +64,8 @@ async function createCategoryMenu() {
   menu.id = "menu-categories"; // On donne un nom à ce container pour pouvoir la retrouver facilement
  // On met le container juste avant la galerie de travaux
   portfolioSection.insertBefore(menu, portfolioSection.querySelector(".gallery"));
+
+// ---------------------------- BUTTONS -------------------
 
   // On crée un bouton "Tous" pour permettre d'afficher tous les travaux
   const allButton = document.createElement("button");
@@ -74,6 +84,8 @@ async function createCategoryMenu() {
   //console.log("Menu de catégories créé"); // Affiche dans la console pour vérifier que le menu est bien créé
   addFilterEvents(); // On ajoute les actions quand on clique sur les boutons
 }
+
+// -------------------- EVENTS ----------------
 
 // Fonction pour ajouter des événements de clic sur chaque bouton de catégorie
 function addFilterEvents() {
@@ -96,6 +108,8 @@ function addFilterEvents() {
   });
 }
 
+// --------------------------- AFFICHAGE DE LA GAlLERY ----------------
+
 // Fonction pour afficher les travaux dans la galerie
 async function showWorks(categoryId = "all") {
   // On trouve l'endroit où sont affichés les travaux
@@ -113,6 +127,8 @@ async function showWorks(categoryId = "all") {
     console.error("Aucun travail récupéré"); // S'il n'y a pas de travaux, on arrête ici
     return;
   }
+
+  // ----------------------- FILTRES ----------------------------
 
   // On filtre les travaux selon la catégorie choisie
   const filteredWorks = (categoryId === "all")
@@ -135,6 +151,8 @@ async function showWorks(categoryId = "all") {
 
   //console.log("Travaux affichés :", filteredWorks); // Vérifie les travaux affichés dans la galerie
 }
+
+// ----------------- LANCEMENT DE LA PAGE CHARGEE --------------
 
 // Fonction principale pour tout lancer quand la page est chargée
 async function init() {
