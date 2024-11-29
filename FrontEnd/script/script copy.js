@@ -93,15 +93,10 @@ function addFilterEvents() {
     console.error("Aucun bouton de catégorie trouvé"); // S'il n'y a pas de boutons, on arrête ici
     return;
   }
-  
 
   // Pour chaque bouton, on ajoute une action à faire quand on clique dessus
   buttons.forEach(button => {
-    button.addEventListener("click", (e) => {
-      buttons.forEach(button => {
-        button.classList.remove("active"); 
-          });
-      e.target.classList.add ("active") 
+    button.addEventListener("click", () => {
       // Quand on clique, on récupère l'identifiant de la catégorie liée au bouton
       const categoryId = button.dataset.category;
       //console.log("Filtre appliqué :", categoryId); // Affiche dans la console pour vérifier quel filtre est appliqué
