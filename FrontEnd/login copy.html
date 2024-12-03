@@ -16,7 +16,7 @@
     <!-- retrait portfolio + intro de index -->
 	<nav>
 		<ul>
-			<li><a href="index.html">portfolio</a></li>
+			<li><a href="index.html">projets</a></li>
 			<li><a href="index.html">contact</a></li>
 			<li><a href="login.html">login</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
@@ -26,16 +26,22 @@
 <main>
 	
 	<section id="contact">
-		<h2>Contact</h2>
-		<p>Vous avez un projet ? Discutons-en !</p>
+		<h2>Log In</h2>
 		<form action="#" method="post">
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="name">
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
-			<label for="message">Message</label>
-			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
+
+			<!-- champ pour le mail -->
+			<label for="email">Adresse e-mail</label>
+			<input type="email" name="email" id="email" required>
+
+			<!-- champ pour le MdP -->
+			<label for="password">Mot de passe</label>
+			<input type="password" name="password" id="password">
+
+			<!-- bouton se connecter -->
+			<input type="submit" value="Se connecter">
+
+			<!-- lien pour MdP oublié -->
+			<a href="#" class="forgot-password">Mot de passe oublié ?</a>
 		</form>
 	</section>
 </main>

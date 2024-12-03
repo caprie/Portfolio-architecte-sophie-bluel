@@ -1,3 +1,4 @@
+
 //----------RECUPERATION DES API ----------
 
 // Fonction pour récupérer les travaux depuis l'API
@@ -50,7 +51,7 @@ async function createCategoryMenu() {
   if (!categories) {
     console.error("Pas de catégories récupérées"); // S'il n'y a pas de catégories, on arrête ici
     return;
-  }
+}
 
   // --------------------- AJOUT DES BUTTONS ET CATEGORIES --------------------
 
