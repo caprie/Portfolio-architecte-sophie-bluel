@@ -139,11 +139,10 @@ li:hover {
 }
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
 #contact > * {
 	text-align: center;
-
 }
 #contact h2{
 	margin-bottom: 20px;
@@ -219,4 +218,13 @@ border-radius: 60px;
 #menu-categories .active{
 	background-color: #1D6154;
 	color: white;
+}
+
+#contact p{
+	color: #3D3D3D;
+    margin: 0.5em auto;
+    width: 180px;
+	display: flex;	
+	font-size: 14px;
+	margin-left: 105px;
 }
