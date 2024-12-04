@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/
+back/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -52,14 +52,17 @@ body {
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	background-color: #fffef8;
 }
 header {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0
+	
 }
 section {
 	margin: 50px 0
+	
 }
 
 h1{
@@ -75,7 +78,7 @@ h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
-;
+	
 }
 
 h2{
@@ -88,11 +91,14 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
-
+	font-size: 12px;
+	font-weight: 300;
+	
 }
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	
 }
 
 li:hover {
@@ -101,6 +107,7 @@ li:hover {
 #introduction {
 	display: flex;
 	align-items: center;
+	
 }
 #introduction figure {
 	flex: 1
@@ -140,18 +147,22 @@ li:hover {
 #contact {
 	width: 50%;
 	margin: auto;
+	
 }
 #contact > * {
 	text-align: center;
+	
 }
 #contact h2{
 	margin-bottom: 20px;
+	
 }
 #contact form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
+	
 }
 
 #contact input {
@@ -159,9 +170,11 @@ li:hover {
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	
 }
 #contact label {
 	margin: 2em 0 1em 0;
+	
 }
 #contact textarea {
 	border: none;
@@ -177,6 +190,7 @@ input[type="submit"]{
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
+	
 }
 
 footer nav ul {
@@ -220,11 +234,16 @@ border-radius: 60px;
 	color: white;
 }
 
-#contact p{
-	color: #3D3D3D;
+#contact p {
+	/*color: red;*/
     margin: 0.5em auto;
-    width: 180px;
+    /*width: 180px;
 	display: flex;	
 	font-size: 14px;
-	margin-left: 105px;
+	margin-left: 105px;*/
+}
+a{
+	color: #3D3D3D;
+	text-decoration: none;
+	font-size: 12px;
 }
