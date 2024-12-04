@@ -33,6 +33,20 @@ async function getCategories() {
   }
 }
 
+//---------------------STYLE DYNAMIQUE BTN NAV  NE FONCTIONNE PAS--------------------
+
+const links = document.querySelectorAll("nav a");
+
+const currentPath = window.location.href;  //recupere l'url actuelle
+
+links.forEach(link => {
+    if (currentPath === link.href) {
+        link.classList.add("active"); 
+    }
+});
+
+
+
 // --------------- CREATION ET AFFICHAGE DES CATEGORIES ----------
 
 // Fonction pour créer et afficher le menu des catégories

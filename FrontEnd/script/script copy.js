@@ -42,6 +42,21 @@ async function getCategories() {
   }
 }
 
+//---------------------STYLE DYNAMIQUE BTN NAV --------------------
+// Sélectionne tous les liens dans le menu de navigation
+const links = document.querySelectorAll("nav a");
+
+// Récupère l'URL actuelle
+const currentPath = window.location.href; // Exemple : http://127.0.0.1:5500/FrontEnd/login.html
+
+// Parcourt chaque lien pour vérifier si l'URL correspond
+links.forEach(link => {
+    // Utilise une comparaison stricte avec le chemin complet
+    if (currentPath === link.href) {
+        link.classList.add("active"); // Ajoute la classe active si le lien correspond
+    }
+});
+
 // --------------- CREATION ET AFFICHAGE DES CATEGORIES ----------
 
 // Fonction pour créer et afficher le menu des catégories

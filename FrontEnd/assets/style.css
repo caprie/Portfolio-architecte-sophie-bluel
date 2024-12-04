@@ -22,6 +22,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	background-color: #fffef8;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -52,7 +53,7 @@ body {
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
-	background-color: #fffef8;
+	
 }
 header {
 	display: flex;
@@ -206,7 +207,7 @@ footer nav ul {
 	justify-content: center;
 	gap: 20px;
 	padding-bottom: 40px;
-
+	
 }
 #menu-categories button {
 font-family: Syne;
@@ -235,15 +236,16 @@ border-radius: 60px;
 }
 
 #contact p {
-	/*color: red;*/
     margin: 0.5em auto;
-    /*width: 180px;
-	display: flex;	
-	font-size: 14px;
-	margin-left: 105px;*/
 }
 a{
 	color: #3D3D3D;
 	text-decoration: none;
 	font-size: 12px;
 }
+
+a:hover {
+    font-weight: bold;  
+}
+
+
