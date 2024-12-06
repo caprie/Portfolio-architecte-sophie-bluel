@@ -33,7 +33,7 @@ async function getCategories() {
   }
 }
 
-//---------------------STYLE DYNAMIQUE BTN NAV  NE FONCTIONNE PAS--------------------
+//---------------------STYLE DYNAMIQUE BTN NAV  --------------------
 
 const links = document.querySelectorAll("nav a");
 

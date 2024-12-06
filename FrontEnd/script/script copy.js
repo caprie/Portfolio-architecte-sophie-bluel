@@ -47,12 +47,12 @@ async function getCategories() {
 const links = document.querySelectorAll("nav a");
 
 // Récupère l'URL actuelle
-const currentPath = window.location.href; // Exemple : http://127.0.0.1:5500/FrontEnd/login.html
+const currentPath = window.location.href; // adresse complète de la page actuelle dans le navigateur
 
 // Parcourt chaque lien pour vérifier si l'URL correspond
 links.forEach(link => {
     // Utilise une comparaison stricte avec le chemin complet
-    if (currentPath === link.href) {
+    if (currentPath === link.href) {  //currentPath = variable ou on stocke cette adresse pour la réutiliser dans le script
         link.classList.add("active"); // Ajoute la classe active si le lien correspond
     }
 });
