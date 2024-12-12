@@ -160,7 +160,20 @@ async function init() {
 // Appelle la fonction d'initialisation dès le chargement de la page
 init();
 
+// ----------------- INTERACTIONS UTILISATEUR ------------------
 
+// Gestion du clic sur le bouton "Modifier"
+document.querySelector("#edit-mode").addEventListener("click", () => {
+  const button = document.querySelector("#edit-mode");
+
+  // Appliquer la classe pour l'animation
+  button.classList.add("animate-dissolve");
+
+  // Après l'animation, rediriger vers la nouvelle page
+  setTimeout(() => {
+    window.location.href = "#"; // vers la modale ensuite
+  }, 300); // 300ms correspond à la durée de l'animation définie en CSS
+});
 
 // ----------------- FONCTIONNALITÉS ADMIN --------------------- 
 /*après init() pour etre exécuté au chargement de la page, après le contenu dynamique.*/
@@ -169,6 +182,7 @@ init();
 function toggleAdminFeatures() {                               //affichage ou suppression des elemt si token dans le localStorage.
   const token = localStorage.getItem("authToken");
   const editButton = document.querySelector("#edit-mode");
+  console.log("Bouton modifier détecté :", editButton); // Vérifie si le bouton existe dans le DOM
   const filters = document.querySelector("#menu-categories");
 
   if (token) {
@@ -183,3 +197,9 @@ function toggleAdminFeatures() {                               //affichage ou su
     filters.style.display = "flex"; // Si les filtres sont en flex
   }
 }
+
+// Ajouter l'événement au bouton "modifier"
+document.querySelector("#edit-mode").addEventListener("click", () => {
+  // Rediriger vers la page "Homepage_edit_1"
+  window.location.href = "#";
+});

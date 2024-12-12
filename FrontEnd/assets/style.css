@@ -262,12 +262,20 @@ a:hover {
 	border: hidden;
 	height: 18px;
 	background-color: #fffef8;
-	width: 84px;
+	width: 90px;
 	font-size: 14px;
 	font-family: "Work Sans";
 	/*padding-left: 23px;*/
+	cursor: pointer;
+	transition: color 300ms ease-out; /* Animation */
   }
-  #edit-mode i {
+  
+#edit-mode:hover {
+	color: #B1663C; /* Change la couleur du texte et de l'icône au survol */
+	font-weight: bold;
+  } 
+
+#edit-mode i {
 	margin-right: 6px; /* Espace entre l'icône et le texte */
 	font-family: "Font Awesome 5 Free";
   	font-weight: 400; /* Force le poids de l’icône */
@@ -276,4 +284,8 @@ a:hover {
 	height: 14px;
   }
   
+#edit-mode:hover i {
+	color: #B1663C; /* Assure que l'icône suit la même couleur */
+	font-weight: bold;
+  }  
   
