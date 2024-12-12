@@ -24,14 +24,15 @@ async function handleLogin() {
   // Verifie que champs sont remplis
   if (!emailValue || !passwordValue) {
     alert("Veuillez remplir tous les champs.");
-    return;
-    
+    return; 
   }
+
+  
 
   // Prepare données pour envoi au serveur
   const payload = {
     email: emailValue,
-    password: passwordValue,
+    password: passwordValue
   };
     
   console.log("Données envoyées au serveur :", payload); // Vérification
@@ -43,16 +44,9 @@ async function handleLogin() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload),
-      
-  
+      body: JSON.stringify(payload) 
     });
  
-        
-    
-  
-
-    
     if (response.ok) {
       const data = await response.json();
       console.log("Connexion réussie :", data);
@@ -64,6 +58,7 @@ async function handleLogin() {
       window.location.href = "index.html";
     } else {
       // afficher message d'erreur si connex° echoue
+      console.error("Erreur : Identifiants incorrects");
       alert("Identifiants incorrects. Veuillez réessayer.");
     }
   } catch (error) {
@@ -71,7 +66,3 @@ async function handleLogin() {
     alert("Une erreur est survenue. Merci de réessayer plus tard.");
   }
 }
-
-  
-
-

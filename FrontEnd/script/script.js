@@ -154,7 +154,32 @@ async function showWorks(categoryId = "all") {
 async function init() {
   await createCategoryMenu(); 
   showWorks(); 
+  toggleAdminFeatures(); // Ajoute cette ligne pour activer les fonctionnalités admin
 }
 
 // Appelle la fonction d'initialisation dès le chargement de la page
 init();
+
+
+
+// ----------------- FONCTIONNALITÉS ADMIN --------------------- 
+/*après init() pour etre exécuté au chargement de la page, après le contenu dynamique.*/
+
+// Fonction pour afficher ou masquer les fonctionnalités admin
+function toggleAdminFeatures() {                               //affichage ou suppression des elemt si token dans le localStorage.
+  const token = localStorage.getItem("authToken");
+  const editButton = document.querySelector("#edit-mode");
+  const filters = document.querySelector("#menu-categories");
+
+  if (token) {
+    console.log("Admin logué : token présent.");
+    // Si l'utilisateur est connecté (token présent)
+    editButton.style.display = "block";
+    filters.style.display = "none";
+  } else {
+    console.log("Admin non logué : pas de token.");
+    // Si l'utilisateur n'est pas connecté
+    editButton.style.display = "none";
+    filters.style.display = "flex"; // Si les filtres sont en flex
+  }
+}
