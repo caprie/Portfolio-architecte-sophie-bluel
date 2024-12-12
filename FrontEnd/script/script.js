@@ -46,6 +46,46 @@ links.forEach(link => {
 });
 
 
+//------------------- style logout -----------------
+function toggleLoginLogoutButton() {
+  console.log("toggleLoginLogoutButton exécuté"); // vérifier si la fonction est appelée
+  const loginButton = document.querySelector('a[href="login.html"]'); // Sélectionne le lien "login"
+  console.log("Bouton login/logout sélectionné :", loginButton);
+
+
+  if (!loginButton) {
+    console.error("Le bouton login/logout n'a pas été trouvé dans le DOM.");
+    return; // Sortir de la fonction si l'élément n'existe pas
+  }
+
+  const token = localStorage.getItem("authToken"); // Vérifie si un token est présent
+  console.log("Token trouvé :", token); // Ajoute ce log pour vérifier si le token est trouvé
+
+  if (token) {
+    // Si l'admin est connecté
+    console.log("Token trouvé :", token); // Vérifie si le token est récupéré
+    loginButton.textContent = "Logout"; // Change le texte du bouton
+    loginButton.style.fontWeight = "bold"; // Met le texte en gras
+    loginButton.href = "#"; // Supprime la redirection vers la page login
+
+    // Ajoute un event listener pour déconnecter
+    loginButton.addEventListener("click", () => {
+      localStorage.removeItem("authToken"); // Supprime le token
+      alert("Vous avez été déconnecté.");
+      window.location.reload(); // Recharge la page pour revenir à l'état non connecté
+    });
+  } else {
+    // Si l'admin n'est pas connecté
+    console.log("Aucun token trouvé"); // Vérifie si aucun token
+    console.log("Utilisateur non connecté, bouton 'Login' visible."); // Ajoute ce log
+    loginButton.textContent = "Login"; // Remet le texte par défaut
+    loginButton.style.fontWeight = "normal"; // Texte normal
+    loginButton.href = "login.html"; // Redirection vers la page de connexion
+  }
+
+}
+
+
 
 // --------------- CREATION ET AFFICHAGE DES CATEGORIES ----------
 
@@ -148,6 +188,34 @@ async function showWorks(categoryId = "all") {
   }); 
 }
 
+// ----------------- BARRE NOIRE EN MODE ÉDITION ------------------
+function toggleEditBar() {
+  const editBar = document.querySelector("#edit-bar");
+  const token = localStorage.getItem("authToken"); // Vérifie si un token est présent
+
+  if (token) {
+    // Si l'utilisateur est connecté
+    editBar.classList.remove("hidden"); // Affiche la barre
+  } else {
+    // Si l'utilisateur n'est pas connecté
+    editBar.classList.add("hidden"); // Cache la barre
+  }
+}
+
+// ----------------- LANCEMENT DE LA PAGE CHARGEE ----------------
+
+// Fonction principale pour tout lancer quand la page est chargée
+/*async function init() {
+  await createCategoryMenu(); 
+  showWorks();
+  toggleAdminFeatures(); // Appelle la fonction pour activer les fonctionnalités admin
+  toggleEditBar(); // Appelle la fonction pour gérer la barre noire
+}
+
+// Appelle la fonction d'initialisation dès le chargement de la page
+init();*/
+
+
 // ----------------- LANCEMENT DE LA PAGE CHARGEE --------------
 
 // Fonction principale pour tout lancer quand la page est chargée
@@ -155,6 +223,7 @@ async function init() {
   await createCategoryMenu(); 
   showWorks(); 
   toggleAdminFeatures(); // Ajoute cette ligne pour activer les fonctionnalités admin
+  toggleLoginLogoutButton(); // Appelle la gestion du bouton login/logout
 }
 
 // Appelle la fonction d'initialisation dès le chargement de la page
@@ -181,6 +250,7 @@ document.querySelector("#edit-mode").addEventListener("click", () => {
 // Fonction pour afficher ou masquer les fonctionnalités admin
 function toggleAdminFeatures() {                               //affichage ou suppression des elemt si token dans le localStorage.
   const token = localStorage.getItem("authToken");
+  console.log("Token trouvé :", token); // Vérifie si le token est récupérés
   const editButton = document.querySelector("#edit-mode");
   console.log("Bouton modifier détecté :", editButton); // Vérifie si le bouton existe dans le DOM
   const filters = document.querySelector("#menu-categories");
@@ -200,6 +270,6 @@ function toggleAdminFeatures() {                               //affichage ou su
 
 // Ajouter l'événement au bouton "modifier"
 document.querySelector("#edit-mode").addEventListener("click", () => {
-  // Rediriger vers la page "Homepage_edit_1"
+  // Rediriger vers la modale
   window.location.href = "#";
 });

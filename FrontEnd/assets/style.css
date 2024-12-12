@@ -275,6 +275,11 @@ a:hover {
 	font-weight: bold;
   } 
 
+#edit-button.animate-dissolve {  /*source figma*/
+	transform: scale(0.8); /* Réduction */
+	opacity: 0; /* Disparaît */
+  }
+
 #edit-mode i {
 	margin-right: 6px; /* Espace entre l'icône et le texte */
 	font-family: "Font Awesome 5 Free";
@@ -289,3 +294,41 @@ a:hover {
 	font-weight: bold;
   }  
   
+#edit-bar {
+	position: fixed; /* Fixe la barre en haut de l'écran */
+	top: 0;
+	left: 0;
+	width: 100%; /* Barre couvrant toute la largeur */
+	height: 10px;
+	background-color: black;
+	color: white;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+	font-family: 'Work Sans', sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 10px 0;
+	z-index: 1000; /* Assure que la barre reste au-dessus des autres éléments */
+  }
+  #edit-bar p {
+	margin: 0;
+	font-weight: 100;
+	background-color: black;
+	color: white;
+  }
+  
+  /*#edit-bar svg {
+	margin-right: 10px;
+  }*/
+  
+  .hidden {
+	display: none;
+  }
+  
+  #edit-bar i {
+	background-color: black;
+	color: white;
+	font-family: "Font Awesome 5 Free";
+  }
