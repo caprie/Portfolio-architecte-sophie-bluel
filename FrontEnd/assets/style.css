@@ -16,319 +16,322 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-	background-color: #fffef8;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  background-color: #fffef8;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 /** end reset css**/
 body {
-	max-width: 1140px;
-	margin:auto;
-	font-family: 'Work Sans' ;
-	font-size: 14px;
-	
+  max-width: 1140px;
+  margin: auto;
+  font-family: "Work Sans";
+  font-size: 14px;
 }
 header {
-	display: flex;
-	justify-content: space-between;
-	margin: 50px 0
-	
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 0;
 }
 section {
-	margin: 50px 0
-	
+  margin: 50px 0;
 }
 
-h1{
-	display: flex;
-	flex-direction: column;
-	font-family: 'Syne';
-	font-size: 22px;
-	font-weight: 800;
-	color: #B1663C
+h1 {
+  display: flex;
+  flex-direction: column;
+  font-family: "Syne";
+  font-size: 22px;
+  font-weight: 800;
+  color: #b1663c;
 }
 
 h1 > span {
-	font-family: 'Work Sans';
-	font-size:10px;
-	letter-spacing: 0.1em;
-	
+  font-family: "Work Sans";
+  font-size: 10px;
+  letter-spacing: 0.1em;
 }
 
-h2{
-	/*font-family: 'Syne';
+h2 {
+  /*font-family: 'Syne';
 	font-weight: 700;*/
-	font-size: 30px;
-	color: #1D6154;
-	font-family: "Syne";
+  font-size: 30px;
+  color: #1d6154;
+  font-family: "Syne";
 }
 nav ul {
-	display: flex;
-	align-items: center;
-	list-style-type: none;
-	font-size: 12px;
-	font-weight: 300;
-	
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  font-size: 12px;
+  font-weight: 300;
 }
 nav li {
-	padding: 0 10px;
-	font-size: 1.2em;
-	
+  padding: 0 10px;
+  font-size: 1.2em;
 }
 
 li:hover {
-	color: #B1663C;
+  color: #b1663c;
 }
 #introduction {
-	display: flex;
-	align-items: center;
-	
+  display: flex;
+  align-items: center;
 }
 #introduction figure {
-	flex: 1
+  flex: 1;
 }
 #introduction img {
-	/*display: block;*/
-	margin: auto;
-	width: 80%;
+  /*display: block;*/
+  margin: auto;
+  width: 80%;
 }
 
 #introduction article {
-	flex: 1
+  flex: 1;
 }
 #introduction h2 {
-	margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 #introduction p {
-	margin-bottom: 0.5em;
+  margin-bottom: 0.5em;
+}
+#portfolio {
+  position: relative; /* Permet de positionner les enfants avec position: absolute */
 }
 #portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
+  text-align: center;
+  margin-bottom: 1em;
 }
 .gallery {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
 }
 
 .gallery img {
-	width: 100%;
-
+  width: 100%;
 }
 #contact {
-	width: 50%;
-	margin: auto;
-	
+  width: 50%;
+  margin: auto;
 }
 #contact > * {
-	text-align: center;
-	
+  text-align: center;
 }
-#contact h2{
-	margin-bottom: 20px;
-	
+#contact h2 {
+  margin-bottom: 20px;
 }
 #contact form {
-	text-align: left;
-	margin-top:30px;
-	display: flex;
-	flex-direction: column;
-	
+  text-align: left;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
 #contact input {
-	height: 50px;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-	
+  height: 50px;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 #contact label {
-	margin: 2em 0 1em 0;
-	
+  margin: 2em 0 1em 0;
 }
 #contact textarea {
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
-	font-family: 'Syne';
-	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
-	margin : 2em auto ;
-	width: 180px;
-	text-align: center;
-	border-radius: 60px ;
-	
+input[type="submit"] {
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  margin: 2em auto;
+  width: 180px;
+  text-align: center;
+  border-radius: 60px;
 }
 
 footer nav ul {
-	display: flex;
-	justify-content: flex-end;
-	margin: 2em
+  display: flex;
+  justify-content: flex-end;
+  margin: 2em;
 }
 
 /* code style btn category */
 #menu-categories {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	gap: 20px;
-	padding-bottom: 40px;
-	
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding-bottom: 40px;
 }
 #menu-categories button {
-font-family: Syne;
-font-size: 16px;
-font-weight: 700;
-line-height: 19.2px;
-text-align: center;
-text-underline-position: from-font;
-text-decoration-skip-ink: none;
-color: #1D6154;
-height: 35px;
-padding-left: 14px;
-padding-right: 14px;
-border: 1px solid rgba(29, 97, 84, 1);
-border-radius: 60px;
-
+  font-family: Syne;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.2px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #1d6154;
+  height: 35px;
+  padding-left: 14px;
+  padding-right: 14px;
+  border: 1px solid rgba(29, 97, 84, 1);
+  border-radius: 60px;
 }
-#menu-categories button:hover{
-	background-color: #1D6154;
-	color: white;
+#menu-categories button:hover {
+  background-color: #1d6154;
+  color: white;
 }
 
-#menu-categories .active{
-	background-color: #1D6154;
-	color: white;
+#menu-categories .active {
+  background-color: #1d6154;
+  color: white;
 }
 
 #contact p {
-    margin: 0.5em auto;
+  margin: 0.5em auto;
 }
-a{
-	color: #3D3D3D;
-	text-decoration: none;
-	font-size: 12px;
+a {
+  color: #3d3d3d;
+  text-decoration: none;
+  font-size: 12px;
 }
 
 a:hover {
-    font-weight: bold;  
+  font-weight: bold;
 }
 
-.hidden {  /*cacher la visibilité du bouton quand admin non logué */
-    display: none;
+.hidden {
+  /*cacher la visibilité du bouton quand admin non logué */
+  display: none !important;
 }
 
 #edit-mode {
-	margin-left: 10px; /* Ajoute un petit espace entre le bouton et le texte */
-	display: flex;
-	align-items: center;
-	margin-left: 627px;
-	margin-top: -23px;
-	border: hidden;
-	height: 18px;
-	background-color: #fffef8;
-	width: 90px;
-	font-size: 14px;
-	font-family: "Work Sans";
-	/*padding-left: 23px;*/
-	cursor: pointer;
-	transition: color 300ms ease-out; /* Animation */
-  }
-  
-#edit-mode:hover {
-	color: #B1663C; /* Change la couleur du texte et de l'icône au survol */
-	font-weight: bold;
-  } 
+  /*position: static;  Le bouton sera positionné par rapport à #portfolio */
+  /*right: 10px;  À droite de la section */
+  /*top: 0;  Aligné avec le haut de la section */
+  /*margin-left: 10px; /* Ajoute un petit espace entre le bouton et le texte */
+  display: block;
+  align-items: center;
+  border: none;
+  margin-left: 480px;
+  margin-top: -23px;
+  /*border: hidden;*/
+  /*height: 18px;*/
+  background-color: transparent;
+  /*background-color: #fffef8;*/
 
-#edit-button.animate-dissolve {  /*source figma*/
-	transform: scale(0.8); /* Réduction */
-	opacity: 0; /* Disparaît */
-  }
+  width: 90px;
+  font-size: 14px;
+  font-family: "Work Sans";
+  /*padding-left: 23px;*/
+  cursor: pointer;
+  transition: color 300ms ease-out;
+}
 
 #edit-mode i {
-	margin-right: 6px; /* Espace entre l'icône et le texte */
-	font-family: "Font Awesome 5 Free";
-  	font-weight: 400; /* Force le poids de l’icône */
-	color: black;
-	width: 12px;
-	height: 14px;
-  }
+  margin-right: 6px; /* Espace entre l'icône et le texte */
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  color: black;
+  width: 12px;
+  height: 14px;
+}
+
+#edit-mode:hover {
+  color: #b1663c; /* Change la couleur du texte et de l'icône au survol */
+  /*font-weight: bold;*/
+}
+
+/*#edit-button.animate-dissolve {
   
+  transform: scale(0.8); 
+  opacity: 0; 
+}*/
+
 #edit-mode:hover i {
-	color: #B1663C; /* Assure que l'icône suit la même couleur */
-	font-weight: bold;
-  }  
-  
+  color: #b1663c; /* Assure que l'icône suit la même couleur */
+  /*font-weight: bold;*/
+}
+
 #edit-bar {
-	position: fixed; /* Fixe la barre en haut de l'écran */
-	top: 0;
-	left: 0;
-	width: 100%; /* Barre couvrant toute la largeur */
-	height: 10px;
-	background-color: black;
-	color: white;
-	display: flex;
-	align-items: center;
-	text-align: center;
-	justify-content: center;
-	font-family: 'Work Sans', sans-serif;
-	font-size: 12px;
-	font-weight: bold;
-	padding: 10px 0;
-	z-index: 1000; /* Assure que la barre reste au-dessus des autres éléments */
-  }
-  #edit-bar p {
-	margin: 0;
-	font-weight: 100;
-	background-color: black;
-	color: white;
-  }
-  
-  /*#edit-bar svg {
+  position: fixed; /* Fixe la barre en haut de l'écran */
+  top: 0;
+  left: 0;
+  width: 100%; /* Barre couvrant toute la largeur */
+  height: 10px;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-family: "Work Sans", sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 10px 0;
+  z-index: 1000; /* Assure que la barre reste au-dessus des autres éléments */
+}
+#edit-bar p {
+  margin: 0;
+  font-weight: 100;
+  background-color: black;
+  color: white;
+}
+
+/*#edit-bar svg {
 	margin-right: 10px;
   }*/
-  
-  .hidden {
-	display: none;
-  }
-  
-  #edit-bar i {
-	background-color: black;
-	color: white;
-	font-family: "Font Awesome 5 Free";
-  }
+
+#edit-bar i {
+  background-color: black;
+  color: white;
+  font-family: "Font Awesome 5 Free";
+}
