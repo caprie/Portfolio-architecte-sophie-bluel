@@ -258,10 +258,11 @@ a:hover {
   /*right: 10px;  À droite de la section */
   /*top: 0;  Aligné avec le haut de la section */
   /*margin-left: 10px; /* Ajoute un petit espace entre le bouton et le texte */
-  display: block;
+  /*display: block;*/
+  justify-content: center;
   align-items: center;
   border: none;
-  margin-left: 480px;
+  /*margin-left: 480px;*/
   margin-top: -23px;
   /*border: hidden;*/
   /*height: 18px;*/
