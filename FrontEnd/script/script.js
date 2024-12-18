@@ -193,6 +193,7 @@ function toggleEditBar() {
 
 // Fonction principale pour tout lancer quand la page est chargée
 document.addEventListener("DOMContentLoaded", () => {
+  const closeModalButton = document.querySelector(".close-modal");
   const editButton = document.querySelector("#edit-mode");
 
   async function init() {
@@ -257,3 +258,51 @@ function toggleAdminFeatures() {
 document.querySelector("#edit-mode").addEventListener("click", () => {
   window.location.href = "#";
 });
+
+// --------------------------------fonctionnalités pour la modale
+
+// Sélection des éléments
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.querySelector("#gallery-modal");
+  const openModalButton = document.querySelector("#edit-mode"); // Bouton "Modifier"
+  const closeModalButton = document.querySelector(".close-modal");
+  const modalGallery = document.querySelector(".gallery-modal");
+
+  // Fonction pour ouvrir la modale et charger les images
+  function openModalGallery() {
+    modal.classList.remove("hidden");
+    modalGallery.innerHTML = ""; // Vide la galerie existante
+
+    // Charge les images via l'API
+    getWorks().then((works) => {
+      works.forEach((work) => {
+        const imgElement = document.createElement("img");
+        imgElement.src = work.imageUrl;
+        imgElement.alt = work.title;
+        modalGallery.appendChild(imgElement);
+      });
+    });
+  }
+
+  // Fonction pour fermer la modale
+  function closeModalGallery() {
+    modal.classList.add("hidden");
+  }
+
+  // Écouteurs d'événements
+  if (openModalButton) {
+    openModalButton.addEventListener("click", openModalGallery);
+  }
+
+  if (closeModalButton) {
+    closeModalButton.addEventListener("click", closeModalGallery);
+  }
+
+  // Fermer la modale au clic en dehors
+  window.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModalGallery();
+    }
+  });
+});
+

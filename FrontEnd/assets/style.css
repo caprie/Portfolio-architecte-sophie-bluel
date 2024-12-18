@@ -336,3 +336,147 @@ a:hover {
   color: white;
   font-family: "Font Awesome 5 Free";
 }
+/* ------------------MODALE ----------------------------*/
+
+/* MODALE - Fond noir semi-transparent */
+
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Fond noir avec opacité */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* MODALE - Contenu */
+.modal-content {
+  position: relative;
+  width: 600px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* MODALE - Bouton de fermeture */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #b1663c;
+}
+
+/* MODALE - Galerie */
+.gallery-modal {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 colonnes */
+  /*flex-wrap: wrap;*/
+  gap: 10px;
+  justify-content: center;
+  /*margin: 20px 0;*/
+}
+
+.gallery-modal img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  /*border: 1px solid #ddd;*/
+  border-radius: 5px;
+}
+
+#add-photo {
+  background-color: #1d6154;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-family: "Syne";
+  cursor: pointer;
+}
+
+#add-photo:hover {
+  background-color: #b1663c;
+}
+
+/* Styles pour la modale */
+
+#gallery-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000; /* S'assure que la modale est au premier plan */
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px; /* Modale responsive, maximum de largeur */
+  /* max-height: 80%; Empêche la modale de déborder en hauteur */
+  /*overflow-y: auto;  Ajoute un défilement si le contenu dépasse */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative; /* Assure la position de l'élément interne */
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 25px;
+  cursor: pointer;
+  color: #333;
+}
+
+.modal-content h3 {
+  font-family: "Syne", sans-serif;
+  font-size: 22px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
