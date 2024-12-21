@@ -424,22 +424,20 @@ a:hover {
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
   z-index: 1000; /* S'assure que la modale est au premier plan */
+  /*opacity: 0;*/
+  /*transform: scale(0.9);*/
+  /*transition: opacity 0.5s ease, transform 0.5s ease;*/
+}
+
+/* Classe pour afficher la modale */
+#gallery-modal.show {
+  display: flex; /* Rend la modale visible */
+  opacity: 1;
+  transform: scale(1);
 }
 
 .hidden {
   display: none;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 600px; /* Modale responsive, maximum de largeur */
-  /* max-height: 80%; Empêche la modale de déborder en hauteur */
-  /*overflow-y: auto;  Ajoute un défilement si le contenu dépasse */
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-  position: relative; /* Assure la position de l'élément interne */
 }
 
 .close-modal {
@@ -478,5 +476,3 @@ a:hover {
   font-size: 24px;
   cursor: pointer;
 }
-
-
