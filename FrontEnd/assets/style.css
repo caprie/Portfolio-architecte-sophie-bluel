@@ -412,9 +412,10 @@ a:hover {
   background-color: #b1663c;
 }
 
-/* Styles pour la modale */
+/* Styles pour les modales */
 
-#gallery-modal {
+#gallery-modal,
+#photo-modal {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -431,6 +432,9 @@ a:hover {
   /*transition: opacity 0.5s ease, transform 0.5s ease;*/
 }
 
+
+
+
 /* Classe pour afficher la modale */
 #gallery-modal.show {
   display: flex; /* Rend la modale visible */
@@ -438,9 +442,9 @@ a:hover {
   transform: scale(1);
 }
 
-.hidden {
+/*.hidden {
   display: none;
-}
+}*/
 
 .close-modal {
   position: absolute;

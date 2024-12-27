@@ -27,12 +27,10 @@ async function getCategories() {
     const categories = await response.json();
     return categories;
   } catch (error) {
-    console.error(
-      "Erreur lors de la récupération des catégories :",
-      error.message
-    );
+    console.error("Erreur lors de la récupération des catégories :", error.message);
   }
 }
+
 
 //---------------------STYLE DYNAMIQUE BTN NAV  --------------------
 
@@ -345,6 +343,46 @@ function openModalGallery() {
     }
   });
 });
+
+// Fonction pour ouvrir une modale spécifique
+function openModal(modalId) {
+  const modal = document.querySelector(modalId);
+  if (modal) {
+    modal.classList.remove("hidden");
+    modal.style.display = "flex";
+  } else {
+    console.error(`La modale avec l'ID ${modalId} n'existe pas.`);
+  }
+}
+
+// Fonction pour fermer une modale spécifique
+function closeModal(modalId) {
+  const modal = document.querySelector(modalId);
+  if (modal) {
+    modal.classList.add("hidden");
+    modal.style.display = "none";
+  } else {
+    console.error(`La modale avec l'ID ${modalId} n'existe pas.`);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Bouton pour ouvrir la deuxième modale depuis la première
+  const addPhotoButton = document.querySelector("#add-photo");
+  if (addPhotoButton) {
+    addPhotoButton.addEventListener("click", () => {
+      closeModal("#main-modal"); // Ferme la première modale
+      openModal("#photo-modal"); // Ouvre la deuxième modale
+    });
+  }
+
+  // Boutons pour fermer la deuxième modale
+  const closePhotoModalButton = document.querySelector(".close-photo-modal");
+  if (closePhotoModalButton) {
+    closePhotoModalButton.addEventListener("click", () => closeModal("#photo-modal"));
+  }
+});
+
     
 
   

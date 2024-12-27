@@ -103,6 +103,28 @@
     <button id="add-photo">Ajouter une photo</button>
   </div>
 </div>
+
+<!-- 2ème Modale : Ajouter une photo -->
+<div id="photo-modal" class="hidden">
+  <div class="modal-content">
+    <span class="close-photo-modal close-modal">&times;</span>
+    <h3>Ajout photo</h3>
+    <form id="add-project-form">
+      <label for="image" class="add-photo-label">
+        <span>+ Ajouter photo</span>
+        <input type="file" id="image" name="image" accept="image/*" required hidden />
+      </label>
+      <p>jpg, png : 4mo max</p>
+      <label for="title">Titre</label>
+      <input type="text" id="title" name="title" required />
+      <label for="category">Catégorie</label>
+      <select id="category" name="category" required></select>
+      <button type="submit" id="submit-photo">Valider</button>
+    </form>
+  </div>
+</div>
+
+
 <script src="script/script.js"></script>
   </body>
 </html>
