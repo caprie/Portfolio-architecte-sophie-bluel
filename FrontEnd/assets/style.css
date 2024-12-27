@@ -404,6 +404,8 @@ a:hover {
   border-radius: 20px;
   font-family: "Syne";
   cursor: pointer;
+  margin-top: 120px;
+  margin-bottom: 35px;
 }
 
 #add-photo:hover {
@@ -476,3 +478,38 @@ a:hover {
   font-size: 24px;
   cursor: pointer;
 }
+figure {
+  /*font-family: "work-sans";*/
+  font-size: 13px;
+  font-weight: 400;
+  color: #3d3d3d;
+  border-radius: 30%;}
+.delete-button {
+      font-size: 17px;
+      color: green;
+      background-color: black;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      /*justify-items: center;*/
+    }
+
+    .gallery-modal figure {
+      position: relative; /* Nécessaire pour le positionnement absolu des enfants */
+    }
+    
+    .trash-icon {
+      position: absolute; /* Positionne par rapport à la figure */
+      top: 5px; /* Distance par rapport au haut de la figure */
+      right: 5px; /* Distance par rapport à la droite de la figure */
+      font-size: 17px; /* Taille de l'icône */
+      background-color: #fff; /* Fond blanc pour l'icône */
+      color: black; /* Couleur noire pour la poubelle */
+      padding: 2px;
+      cursor: pointer; /* Change le curseur pour montrer que c'est cliquable */
+      z-index: 10;
+    }
+        
+    

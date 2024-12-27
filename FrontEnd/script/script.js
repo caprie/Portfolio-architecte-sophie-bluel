@@ -269,21 +269,65 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalGallery = document.querySelector(".gallery-modal");
 
   // Fonction pour ouvrir la modale et charger les images
-  function openModalGallery() {
-    modal.classList.remove("hidden");
-    modalGallery.innerHTML = ""; // Vide la galerie existante
+function openModalGallery() {
+  modal.classList.remove("hidden");
+  modalGallery.innerHTML = ""; // Vide la galerie existante
+  console.log("Modale ouverte et galerie vidée."); // Vérifie que cette étape passe
 
-    // Charge les images via l'API
-    getWorks().then((works) => {
-      works.forEach((work) => {
-        const imgElement = document.createElement("img");
-        imgElement.src = work.imageUrl;
-        imgElement.alt = work.title;
-        modalGallery.appendChild(imgElement);
+  // Charge les images via l'API
+  getWorks().then((works) => {
+    works.forEach((work) => {
+      console.log(`Création de figure pour : ${work.title}`); // Vérifie chaque itération
+
+      // Crée l'élément figure pour chaque travail
+      const figure = document.createElement("figure");
+
+      // Crée l'icône poubelle
+      const trashIcon = document.createElement("i");
+      trashIcon.className = "fa-solid fa-trash-can trash-icon"; // Icône poubelle (Font Awesome)
+
+      // Ajoute un événement au clic sur l'icône poubelle
+      trashIcon.addEventListener("click", async () => {
+        if (confirm(`Voulez-vous vraiment supprimer ${work.title} ?`)) {
+          try {
+            const response = await fetch(`http://localhost:5678/api/works/${work.id}`, {
+              method: "DELETE",
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+              },
+            });
+
+            if (response.ok) {
+              console.log(`${work.title} supprimé.`);
+              figure.remove(); // Supprime l'élément du DOM
+            } else {
+              console.error(`Erreur lors de la suppression : ${response.status}`);
+            }
+          } catch (error) {
+            console.error("Erreur lors de la requête DELETE :", error);
+          }
+        }
       });
-    });
-  }
 
+      // Crée l'image
+      const imgElement = document.createElement("img");
+      imgElement.src = work.imageUrl;
+      imgElement.alt = work.title;
+
+      // Ajoute les éléments aux figures
+      figure.appendChild(imgElement);
+      figure.appendChild(trashIcon);
+
+      // Ajoute la figure à la galerie
+      modalGallery.appendChild(figure);
+    });
+  }).catch((error) => {
+    console.error("Erreur lors de la récupération des works :", error);
+  });
+}
+
+
+        
   // Fonction pour fermer la modale
   function closeModalGallery() {
     modal.classList.add("hidden");
@@ -294,10 +338,6 @@ document.addEventListener("DOMContentLoaded", () => {
     openModalButton.addEventListener("click", openModalGallery);
   }
 
-  if (closeModalButton) {
-    closeModalButton.addEventListener("click", closeModalGallery);
-  }
-
   // Fermer la modale au clic en dehors
   window.addEventListener("click", (e) => {
     if (e.target === modal) {
@@ -305,4 +345,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+    
 
+  
+
+  
