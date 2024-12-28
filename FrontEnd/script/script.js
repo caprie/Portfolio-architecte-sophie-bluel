@@ -27,10 +27,12 @@ async function getCategories() {
     const categories = await response.json();
     return categories;
   } catch (error) {
-    console.error("Erreur lors de la récupération des catégories :", error.message);
+    console.error(
+      "Erreur lors de la récupération des catégories :",
+      error.message
+    );
   }
 }
-
 
 //---------------------STYLE DYNAMIQUE BTN NAV  --------------------
 
@@ -47,7 +49,6 @@ links.forEach((link) => {
 //------------------- style logout -----------------
 function toggleLoginLogoutButton() {
   const loginButton = document.querySelector('a[href="login.html#login"]');
-
   const token = localStorage.getItem("authToken");
 
   if (token) {
@@ -60,7 +61,6 @@ function toggleLoginLogoutButton() {
     loginButton.addEventListener("click", () => {
       localStorage.removeItem("authToken"); // Supprime le token
     });
-
   } else {
     // Si l'admin n'est pas connecté
     loginButton.textContent = "Login";
@@ -87,7 +87,9 @@ async function createCategoryMenu() {
   const portfolioSection = document.querySelector("#portfolio");
   const menu = document.createElement("div");
   menu.id = "menu-categories";
-  portfolioSection.insertBefore(menu, portfolioSection.querySelector(".gallery")
+  portfolioSection.insertBefore(
+    menu,
+    portfolioSection.querySelector(".gallery")
   );
 
   // ---------------------------- BUTTONS -------------------
@@ -175,14 +177,12 @@ async function showWorks(categoryId = "all") {
 // ----------------- BARRE NOIRE EN MODE ÉDITION ------------------
 function toggleEditBar() {
   const editBar = document.querySelector("#edit-bar");
-
   const token = localStorage.getItem("authToken");
 
   if (token) {
     // Si l'utilisateur est connecté
     editBar.classList.remove("hidden"); // Affiche la barre
   } else {
-    
     editBar.classList.add("hidden"); // Cache la barre
   }
 }
@@ -233,9 +233,7 @@ document.querySelector("#edit-mode").addEventListener("click", () => {
 // Fonction pour afficher ou masquer les fonctionnalités admin
 function toggleAdminFeatures() {
   const token = localStorage.getItem("authToken");
-
   const editButton = document.querySelector("#edit-mode");
-
   const filters = document.querySelector("#menu-categories");
 
   if (!editButton) {
@@ -267,65 +265,72 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalGallery = document.querySelector(".gallery-modal");
 
   // Fonction pour ouvrir la modale et charger les images
-function openModalGallery() {
-  modal.classList.remove("hidden");
-  modalGallery.innerHTML = ""; // Vide la galerie existante
-  console.log("Modale ouverte et galerie vidée."); // Vérifie que cette étape passe
+  function openModalGallery() {
+    modal.classList.remove("hidden");
+    modalGallery.innerHTML = ""; // Vide la galerie existante
+    console.log("Modale ouverte et galerie vidée."); // Vérifie que cette étape passe
 
-  // Charge les images via l'API
-  getWorks().then((works) => {
-    works.forEach((work) => {
-      console.log(`Création de figure pour : ${work.title}`); // Vérifie chaque itération
+    // Charge les images via l'API
+    getWorks()
+      .then((works) => {
+        works.forEach((work) => {
+          console.log(`Création de figure pour : ${work.title}`); // Vérifie chaque itération
 
-      // Crée l'élément figure pour chaque travail
-      const figure = document.createElement("figure");
+          // Crée l'élément figure pour chaque travail
+          const figure = document.createElement("figure");
 
-      // Crée l'icône poubelle
-      const trashIcon = document.createElement("i");
-      trashIcon.className = "fa-solid fa-trash-can trash-icon"; // Icône poubelle (Font Awesome)
+          // Crée l'icône poubelle
+          const trashIcon = document.createElement("i");
+          trashIcon.className = "fa-solid fa-trash-can trash-icon"; // Icône poubelle (Font Awesome)
 
-      // Ajoute un événement au clic sur l'icône poubelle
-      trashIcon.addEventListener("click", async () => {
-        if (confirm(`Voulez-vous vraiment supprimer ${work.title} ?`)) {
-          try {
-            const response = await fetch(`http://localhost:5678/api/works/${work.id}`, {
-              method: "DELETE",
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-              },
-            });
+          // Ajoute un événement au clic sur l'icône poubelle
+          trashIcon.addEventListener("click", async () => {
+            if (confirm(`Voulez-vous vraiment supprimer ${work.title} ?`)) {
+              try {
+                const response = await fetch(
+                  `http://localhost:5678/api/works/${work.id}`,
+                  {
+                    method: "DELETE",
+                    headers: {
+                      Authorization: `Bearer ${localStorage.getItem(
+                        "authToken"
+                      )}`,
+                    },
+                  }
+                );
 
-            if (response.ok) {
-              console.log(`${work.title} supprimé.`);
-              figure.remove(); // Supprime l'élément du DOM
-            } else {
-              console.error(`Erreur lors de la suppression : ${response.status}`);
+                if (response.ok) {
+                  console.log(`${work.title} supprimé.`);
+                  figure.remove(); // Supprime l'élément du DOM
+                } else {
+                  console.error(
+                    `Erreur lors de la suppression : ${response.status}`
+                  );
+                }
+              } catch (error) {
+                console.error("Erreur lors de la requête DELETE :", error);
+              }
             }
-          } catch (error) {
-            console.error("Erreur lors de la requête DELETE :", error);
-          }
-        }
+          });
+
+          // Crée l'image
+          const imgElement = document.createElement("img");
+          imgElement.src = work.imageUrl;
+          imgElement.alt = work.title;
+
+          // Ajoute les éléments aux figures
+          figure.appendChild(imgElement);
+          figure.appendChild(trashIcon);
+
+          // Ajoute la figure à la galerie
+          modalGallery.appendChild(figure);
+        });
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la récupération des works :", error);
       });
+  }
 
-      // Crée l'image
-      const imgElement = document.createElement("img");
-      imgElement.src = work.imageUrl;
-      imgElement.alt = work.title;
-
-      // Ajoute les éléments aux figures
-      figure.appendChild(imgElement);
-      figure.appendChild(trashIcon);
-
-      // Ajoute la figure à la galerie
-      modalGallery.appendChild(figure);
-    });
-  }).catch((error) => {
-    console.error("Erreur lors de la récupération des works :", error);
-  });
-}
-
-
-        
   // Fonction pour fermer la modale
   function closeModalGallery() {
     modal.classList.add("hidden");
@@ -379,12 +384,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Boutons pour fermer la deuxième modale
   const closePhotoModalButton = document.querySelector(".close-photo-modal");
   if (closePhotoModalButton) {
-    closePhotoModalButton.addEventListener("click", () => closeModal("#photo-modal"));
+    closePhotoModalButton.addEventListener("click", () =>
+      closeModal("#photo-modal")
+    );
   }
 });
-
-    
-
-  
-
-  

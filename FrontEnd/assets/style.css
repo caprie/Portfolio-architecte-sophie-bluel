@@ -92,8 +92,6 @@ h1 > span {
 }
 
 h2 {
-  /*font-family: 'Syne';
-	font-weight: 700;*/
   font-size: 30px;
   color: #1d6154;
   font-family: "Syne";
@@ -121,7 +119,6 @@ li:hover {
   flex: 1;
 }
 #introduction img {
-  /*display: block;*/
   margin: auto;
   width: 80%;
 }
@@ -254,25 +251,14 @@ a:hover {
 }
 
 #edit-mode {
-  /*position: static;  Le bouton sera positionné par rapport à #portfolio */
-  /*right: 10px;  À droite de la section */
-  /*top: 0;  Aligné avec le haut de la section */
-  /*margin-left: 10px; /* Ajoute un petit espace entre le bouton et le texte */
-  /*display: block;*/
   justify-content: center;
   align-items: center;
   border: none;
-  /*margin-left: 480px;*/
   margin-top: -23px;
-  /*border: hidden;*/
-  /*height: 18px;*/
   background-color: transparent;
-  /*background-color: #fffef8;*/
-
   width: 90px;
   font-size: 14px;
   font-family: "Work Sans";
-  /*padding-left: 23px;*/
   cursor: pointer;
   transition: color 300ms ease-out;
 }
@@ -288,18 +274,10 @@ a:hover {
 
 #edit-mode:hover {
   color: #b1663c; /* Change la couleur du texte et de l'icône au survol */
-  /*font-weight: bold;*/
 }
-
-/*#edit-button.animate-dissolve {
-  
-  transform: scale(0.8); 
-  opacity: 0; 
-}*/
 
 #edit-mode:hover i {
   color: #b1663c; /* Assure que l'icône suit la même couleur */
-  /*font-weight: bold;*/
 }
 
 #edit-bar {
@@ -327,10 +305,6 @@ a:hover {
   color: white;
 }
 
-/*#edit-bar svg {
-	margin-right: 10px;
-  }*/
-
 #edit-bar i {
   background-color: black;
   color: white;
@@ -339,7 +313,6 @@ a:hover {
 /* ------------------MODALE ----------------------------*/
 
 /* MODALE - Fond noir semi-transparent */
-
 #modal {
   position: fixed;
   top: 0;
@@ -356,7 +329,8 @@ a:hover {
 /* MODALE - Contenu */
 .modal-content {
   position: relative;
-  width: 600px;
+  width: 630px;
+  height: 630px;
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -378,21 +352,26 @@ a:hover {
   color: #b1663c;
 }
 
+.arrow-left {
+  position: absolute;
+  left: 30px;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 /* MODALE - Galerie */
 .gallery-modal {
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* 5 colonnes */
-  /*flex-wrap: wrap;*/
   gap: 10px;
   justify-content: center;
-  /*margin: 20px 0;*/
 }
 
 .gallery-modal img {
   width: 100%;
   height: auto;
   object-fit: cover;
-  /*border: 1px solid #ddd;*/
   border-radius: 5px;
 }
 
@@ -427,9 +406,6 @@ a:hover {
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
   z-index: 1000; /* S'assure que la modale est au premier plan */
-  /*opacity: 0;*/
-  /*transform: scale(0.9);*/
-  /*transition: opacity 0.5s ease, transform 0.5s ease;*/
 }
 
 #add-project-form {
@@ -437,14 +413,16 @@ a:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
-  padding: 20px;
+  background-color: #e8f1f6;
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   text-align: center;
+  width: 420px;
+  height: 169px;
+  margin-left: 100px;
+  margin-top: 65px;
+  padding-top: 40px;
 }
-
-
 
 /* Classe pour afficher la modale */
 #gallery-modal.show {
@@ -452,10 +430,6 @@ a:hover {
   opacity: 1;
   transform: scale(1);
 }
-
-/*.hidden {
-  display: none;
-}*/
 
 .close-modal {
   position: absolute;
@@ -468,9 +442,12 @@ a:hover {
 
 .modal-content h3 {
   font-family: "Syne", sans-serif;
-  font-size: 22px;
-  margin-bottom: 20px;
-  text-align: center;
+  font-size: 26px;
+  margin-top: 40px;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  height: 30px;
 }
 
 .modal {
@@ -483,7 +460,7 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2000;
+  z-index: 1000;
 }
 
 .close-modal {
@@ -494,37 +471,79 @@ a:hover {
   cursor: pointer;
 }
 figure {
-  /*font-family: "work-sans";*/
   font-size: 13px;
   font-weight: 400;
   color: #3d3d3d;
-  border-radius: 30%;}
+  border-radius: 30%;
+}
 .delete-button {
-      font-size: 17px;
-      color: green;
-      background-color: black;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      justify-content: center;
-      text-align: center;
-      /*justify-items: center;*/
-    }
+  font-size: 17px;
+  color: green;
+  background-color: black;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
 
-    .gallery-modal figure {
-      position: relative; /* Nécessaire pour le positionnement absolu des enfants */
-    }
-    
-    .trash-icon {
-      position: absolute; /* Positionne par rapport à la figure */
-      top: 5px; /* Distance par rapport au haut de la figure */
-      right: 5px; /* Distance par rapport à la droite de la figure */
-      font-size: 17px; /* Taille de l'icône */
-      background-color: #fff; /* Fond blanc pour l'icône */
-      color: black; /* Couleur noire pour la poubelle */
-      padding: 2px;
-      cursor: pointer; /* Change le curseur pour montrer que c'est cliquable */
-      z-index: 10;
-    }
-        
-    
+.gallery-modal figure {
+  position: relative; /* Nécessaire pour le positionnement absolu des enfants */
+}
+
+.trash-icon {
+  position: absolute; /* Positionne par rapport à la figure */
+  top: 5px; /* Distance par rapport au haut de la figure */
+  right: 5px; /* Distance par rapport à la droite de la figure */
+  font-size: 17px; /* Taille de l'icône */
+  background-color: #fff; /* Fond blanc pour l'icône */
+  color: black; /* Couleur noire pour la poubelle */
+  padding: 2px;
+  cursor: pointer;
+  z-index: 10;
+}
+.add-photo-label {
+  font-family: "Work Sans";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19.2px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #1d6154;
+  height: 35px;
+  padding-left: 14px;
+  padding-right: 14px;
+  
+  border-radius: 60px;
+  background-color: #cbd6dc;
+  
+  cursor: pointer;
+  margin-top: 20px;
+}
+.montain-sun {
+  display: flex;          /* Active flexbox */
+  justify-content: center; /* Centre horizontalement */
+  align-items: center;    /* Centre verticalement */
+  background-color: transparent;
+  font-size: 30px;        /* Taille de l’icône */
+  color: #a7a7a7;         /* Couleur de l’icône */ 
+}
+.montain-sun i {
+  background-color: transparent !important;
+}
+.add-photo-btn {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+  align-items: center;
+  background-color: transparent;
+  
+  font-size: 14px;
+  text-align: center;
+  color: #306685;
+  width: 173px;
+  height: 36px;
+  border: none;
+}
