@@ -417,11 +417,13 @@ a:hover {
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   text-align: center;
-  width: 420px;
-  height: 169px;
-  margin-left: 100px;
-  margin-top: 65px;
-  padding-top: 40px;
+  width: 500px;
+  height: 115px;
+  margin-left: 66px;
+  margin-top: 31px;
+  padding-top: 82px;
+  border-radius: 5px;
+  border: 2px solid blue
 }
 
 /* Classe pour afficher la modale */
@@ -502,7 +504,7 @@ figure {
   cursor: pointer;
   z-index: 10;
 }
-.add-photo-label {
+/*.add-photo-label {
   font-family: "Work Sans";
   font-size: 14px;
   font-weight: 500;
@@ -520,7 +522,7 @@ figure {
   
   cursor: pointer;
   margin-top: 20px;
-}
+}*/
 .montain-sun {
   display: flex;          /* Active flexbox */
   justify-content: center; /* Centre horizontalement */
@@ -528,9 +530,18 @@ figure {
   background-color: transparent;
   font-size: 30px;        /* Taille de l’icône */
   color: #a7a7a7;         /* Couleur de l’icône */ 
+  width: 55px;             /* Largeur de l’icône */
+  height: 55px;
+  border: 2px solid purple;
+  padding: 2px;
 }
 .montain-sun i {
   background-color: transparent !important;
+  border: 4px solid #b9c5cc;
+  padding-top: 5px;
+  border-radius: 10px;
+  color: #b9c5cc;
+
 }
 .add-photo-btn {
   display: flex;
@@ -546,4 +557,87 @@ figure {
   width: 173px;
   height: 36px;
   border: none;
+}
+
+/* Conteneur de l'icône et des champs liés à la photo 
+.icon-and-photo-container {
+  text-align: center;
+  margin-bottom: 40px;  Sépare clairement les deux conteneurs 
+}*/
+
+/* Conteneur des champs "Titre", "Catégorie" et "Valider" */
+.form-fields-container {
+  margin-top: 40px; /* Pour s'assurer qu'il ne chevauche pas l'autre conteneur */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espace entre les champs */
+}
+
+/* Ajoute une bordure pour voir les conteneurs distincts (optionnel pour debug) */
+.icon-and-photo-container 
+/*.form-fields-container */{
+  border: 1px dashed red; /* Debug uniquement */
+  background-color: transparent;
+}
+
+/* Si nécessaire, force une hauteur minimale pour les conteneurs */
+/*.icon-and-photo-container {
+  min-height: 190px; 
+}*/
+
+/*.form-fields-container {
+  min-height: 105px; /* Ajuste également pour ce conteneur 
+}*/
+.icon-and-photo-container {
+  display: flex;
+  /*justify-content: center;*/
+  align-items: center;
+  gap: 20px;
+  margin-bottom: -10px;
+  background-color: transparent;
+  flex-direction: column;
+  width: 500px;
+  /*height: 200px;*/
+  margin-top: 130px;
+  padding-top: 10px;
+  border: 1px dashed red;
+  min-height: 180px;
+  position: relative;
+}
+
+.add-photo-label {
+  font-family: "Work Sans";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19.2px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #1d6154;
+  height: 35px;
+  padding-left: 14px;
+  padding-right: 14px;
+  border-radius: 60px;
+  background-color: #cbd6dc;
+  cursor: pointer;
+  margin-top: 20px;
+  width : 173px;
+}
+
+p {
+  font-size: 10px;
+  font-weight: 400;
+  /*line-height: 19.2px;*/
+  text-align: center;
+  /*text-underline-position: from-font;*/
+  /*text-decoration-skip-ink: none;*/
+  color: #444;
+  height: 12px;
+  padding-left: 14px;
+  padding-right: 14px;
+  /*border-radius: 60px;*/
+  background-color: transparent;
+  cursor: pointer;
+  margin-top: -15px;
+  /*width : 173px;*/
 }

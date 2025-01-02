@@ -371,12 +371,13 @@ function closeModal(modalId) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  
   // Bouton pour ouvrir la deuxième modale depuis la première
   const addPhotoButton = document.querySelector("#add-photo");
   if (addPhotoButton) {
     addPhotoButton.addEventListener("click", () => {
-      closeModal("#main-modal"); // Ferme la première modale
+      closeModal("#gallery-modal"); // Ferme la première modale
       openModal("#photo-modal"); // Ouvre la deuxième modale
     });
   }
@@ -388,4 +389,30 @@ document.addEventListener("DOMContentLoaded", () => {
       closeModal("#photo-modal")
     );
   }
+
+  // Ajout dynamique des catégories dans la deuxième modale
+  const categorySelect = document.querySelector("#category");
+
+  if (categorySelect) {
+    try {
+      const categories = await getCategories(); // Récupère les catégories via l'API
+      if (categories && categories.length > 0) {
+        categories.forEach((category) => {
+          const option = document.createElement("option");
+          option.value = category.id;
+          option.textContent = category.name;
+          categorySelect.appendChild(option); // Ajoute chaque catégorie comme option
+        });
+        console.log("Catégories ajoutées au select avec succès.");
+      } else {
+        console.error("Aucune catégorie récupérée ou liste vide.");
+      }
+    } catch (error) {
+      console.error("Erreur lors de l'ajout des catégories :", error);
+    }
+  } else {
+    console.error("Élément select pour les catégories introuvable.");
+  }
 });
+
+
