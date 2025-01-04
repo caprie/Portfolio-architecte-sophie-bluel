@@ -397,13 +397,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       const categories = await getCategories(); // Récupère les catégories via l'API
       if (categories && categories.length > 0) {
+         // Nettoie le select pour éviter les doublons
+         categorySelect.innerHTML = "";
+
+          // Ajoute une option vide par défaut
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";  // Pas de texte dans l'option
+        defaultOption.textContent = "";
+        defaultOption.disabled = true; // Rend l'option non cliquable
+        defaultOption.selected = true; // Affiche cette option par défaut
+        categorySelect.appendChild(defaultOption);
+
+        // Utilisation d'un Set pour éviter les doublons
+        const uniqueCategoryNames = new Set();
+        
         categories.forEach((category) => {
+          if (!uniqueCategoryNames.has(category.name)) {
+            uniqueCategoryNames.add(category.name);
+
           const option = document.createElement("option");
           option.value = category.id;
           option.textContent = category.name;
           categorySelect.appendChild(option); // Ajoute chaque catégorie comme option
+          }
         });
-        console.log("Catégories ajoutées au select avec succès.");
+
+        console.log("Catégories uniques ajoutées au select avec succès.");
       } else {
         console.error("Aucune catégorie récupérée ou liste vide.");
       }
