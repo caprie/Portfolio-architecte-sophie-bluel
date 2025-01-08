@@ -505,24 +505,6 @@ figure {
   z-index: 10;
 }
 .add-photo-label {
-  /*font-family: "Work Sans";
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 19.2px;
-  text-align: center;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
-  color: #1d6154;
-  height: 35px;
-  padding-left: 14px;
-  padding-right: 14px;
-  
-  border-radius: 60px;
-  background-color: #cbd6dc;
-  
-  cursor: pointer;
-  margin-top: 20px;
-  border: 20px solid deeppink;*/
   background-color: #e8f1f6;
 }
 .montain-sun {
@@ -563,11 +545,21 @@ figure {
   background-color: #cbd6dc;
 }
 
-/* Conteneur de l'icône et des champs liés à la photo 
-.icon-and-photo-container {
-  text-align: center;
-  margin-bottom: 40px;  Sépare clairement les deux conteneurs 
-}*/
+#preview-container {
+  position: absolute; /* Permet de positionner l'aperçu par rapport à son conteneur parent */
+  top: 118px; /* Ajustez cette valeur pour placer l'image au-dessus */
+  left: 50%; /* Centre horizontalement */
+  transform: translateX(-50%); /* Correction pour le centrage */
+  text-align: center; /* Centre l'image dans le conteneur */
+}
+
+#image-preview {
+  width: 171px;
+  height: 200px;
+  object-fit: cover;
+  /*border: 1px solid #ccc;
+  border-radius: 5px;*/
+}
 
 /* Conteneur des champs "Titre", "Catégorie" et "Valider" */
 .form-fields-container {
@@ -626,7 +618,7 @@ figure {
   color: #3d3d3d;
   font-weight: 500;
   display: flex;
-  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3);
+  
 }
 
 #category{
@@ -654,7 +646,7 @@ figure {
   margin-right: 430px;
   font-family: Work Sans;
   top: 35px;
-  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3);
+  
 }
 
 #category option:disabled {
@@ -668,10 +660,10 @@ figure {
 #title {
   position: relative;
   top: 30px; 
-  /*border: 2px solid red;*/
+  outline: none;
   width: 475px;
   height: 10px;
-  color: #fff;
+  font-size: 14px;
   box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3);
   background-color: #fff;
   
@@ -702,11 +694,10 @@ figure {
   font-family: "Work Sans", sans-serif;
 }
 
-/*.field input:focus,
-/*.field select:focus { /* Style pour les inputs et selects au focus */
-  /*border-color: #1d6154; /* Change la couleur au focus */
-  /*outline: none;
-}*/
+.field input:focus,
+.field select:focus { 
+  border-color: #1d6154; 
+}
 
 .separator-line {
   width: 500px; /* largeur */

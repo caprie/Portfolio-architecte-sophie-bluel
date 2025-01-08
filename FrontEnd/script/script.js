@@ -34,6 +34,9 @@ async function getCategories() {
   }
 }
 
+
+
+
 //---------------------STYLE DYNAMIQUE BTN NAV  --------------------
 
 const links = document.querySelectorAll("nav a");
@@ -373,6 +376,7 @@ function closeModal(modalId) {
 
 document.addEventListener("DOMContentLoaded", async () => {
   
+  
   // Bouton pour ouvrir la deuxième modale depuis la première
   const addPhotoButton = document.querySelector("#add-photo");
   if (addPhotoButton) {
@@ -397,17 +401,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       const categories = await getCategories(); // Récupère les catégories via l'API
       if (categories && categories.length > 0) {
-         // Nettoie le select pour éviter les doublons
-         categorySelect.innerHTML = "";
-
-          // Ajoute une option vide par défaut
-        const defaultOption = document.createElement("option");
-        defaultOption.value = "";  // Pas de texte dans l'option
-        defaultOption.textContent = "";
-        defaultOption.disabled = true; // Rend l'option non cliquable
-        defaultOption.selected = true; // Affiche cette option par défaut
-        categorySelect.appendChild(defaultOption);
-
+        
         // Utilisation d'un Set pour éviter les doublons
         const uniqueCategoryNames = new Set();
         
@@ -433,5 +427,58 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Élément select pour les catégories introuvable.");
   }
 });
+
+// Prévisualisation de l'image ajoutée
+document.querySelector("#image").addEventListener("change", (event) => {
+  const previewContainer = document.querySelector("#preview-container");
+  const previewImage = document.querySelector("#image-preview");
+
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      previewImage.src = e.target.result; // Affecte l'URL de l'image au src
+      previewImage.style.display = "block"; // Affiche l'image
+    };
+    reader.readAsDataURL(file); // Convertit le fichier en base64
+  } else {
+    // Si aucun fichier sélectionné
+    previewImage.style.display = "none";
+    previewImage.src = "";
+  }
+});
+
+function addphoto () {
+
+  const form = document.querySelector("#add-photo-form");
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const token = localStorage.getItem("authToken");
+
+    try {
+      const response = await fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      if (response.ok) {
+        console.log("Travail ajouté avec succès.");
+        closeModal("#photo-modal"); // Ferme la modale
+        openModal("#gallery-modal"); // Ouvre la modale précédente
+      } else {
+        console.error(`Erreur lors de l'ajout : ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Erreur lors de la requête POST :", error);
+    }
+  });
+}
+
+/*addphoto(); // Appel de la fonction pour ajouter un travail*/
 
 
