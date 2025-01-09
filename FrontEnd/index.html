@@ -8,8 +8,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"rel="stylesheet"/>
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
@@ -57,7 +61,8 @@
         <h2>
           Mes Projets
           <button id="edit-mode" class="hidden">
-            <i class="fa-light fa-pen-to-square"></i>modifier</button>
+            <i class="fa-light fa-pen-to-square"></i>modifier
+          </button>
         </h2>
         <div class="gallery"></div>
       </section>
@@ -85,73 +90,77 @@
       </nav>
     </footer>
 
-    
-
     <!-- MODALE -->
-<div id="gallery-modal" class="hidden">
-  <div class="modal-content">
-    <span class="close-modal">&times;</span>
-    <h3>Galerie photo</h3>
-    <div class="gallery-modal">
-      <!-- Contenu de la galerie modale -->
-    </div>
-    <button id="add-photo">Ajouter une photo</button>
-  </div>
-</div>
-
-<!-- 2ème Modale : Ajouter une photo -->
-<div id="photo-modal" class="hidden">
-  <div class="modal-content">
-    <span class="close-photo-modal close-modal">&times;</span>
-    <div class="arrow-left">
-      <i class="fa-solid fa-arrow-left"></i>
-    </div>
-    
-    <h3>Ajout photo</h3>
-
-    <form id="add-project-form">
-
-    <div class="icon-and-photo-container">
-      <div class="montain-sun">
-        <i class="fa-solid fa-mountain-sun"></i>
+    <div id="gallery-modal" class="hidden">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h3>Galerie photo</h3>
+        <div class="gallery-modal">
+          <!-- Contenu de la galerie modale -->
+        </div>
+        <button id="add-photo">Ajouter une photo</button>
       </div>
-      <label for="image" class="add-photo-label">
-        <span class="add-photo-btn">+ Ajouter photo</span>
-        <input type="file" id="image" name="image" accept="image/*" required hidden />
-      </label>
-      <p class="image-format">jpg, png : 4mo max</p>
     </div>
 
-    <div id="preview-container">
-      <img id="image-preview" alt="Aperçu de l'image" style="display: none;" />
-    </div>
-    
+    <!-- 2ème Modale : Ajouter une photo -->
+    <div id="photo-modal" class="hidden">
+      <div class="modal-content">
+        <span class="close-photo-modal close-modal">&times;</span>
+        <div class="arrow-left">
+          <i class="fa-solid fa-arrow-left"></i>
+        </div>
 
-    <div class="form-fields-container">
-      <div class="field">
-        <label for="title" id="photo-title">Titre</label>
-        <input type="text" id="title" name="title" required />
+        <h3>Ajout photo</h3>
+
+        <form id="add-project-form">
+          <div class="icon-and-photo-container">
+            <div class="montain-sun">
+              <i class="fa-solid fa-mountain-sun"></i>
+            </div>
+            <label for="image" class="add-photo-label">
+              <span class="add-photo-btn">+ Ajouter photo</span>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                required
+                hidden
+              />
+            </label>
+            <p class="image-format">jpg, png : 4mo max</p>
+          </div>
+
+          <div id="preview-container">
+            <img
+              id="image-preview"
+              alt="Aperçu de l'image"
+              style="display: none"
+            />
+          </div>
+
+          <div class="form-fields-container">
+            <div class="field">
+              <label for="title" id="photo-title">Titre</label>
+              <input type="text" id="title" name="title" required />
+            </div>
+
+            <div class="field-field-category">
+              <label for="category" id="category-list">Catégorie</label>
+              <select id="category" name="category" required>
+                <option value="" disabled selected hidden></option>
+              </select>
+            </div>
+
+            <!-- Ligne de séparation -->
+            <div class="separator-line"></div>
+
+            <button type="submit" id="submit-photo">Valider</button>
+          </div>
+        </form>
       </div>
-
-      <div class="field-field-category">
-        <label for="category" id="category-list">Catégorie</label>
-        <select id="category" name="category" required>
-        <option value="" disabled selected hidden></option>
-        </select>
-      </div>
-
-      <!-- Ligne de séparation -->
-      <div class="separator-line"></div>
-
-      <button type="submit" id="submit-photo">Valider</button>
     </div>
-    
 
-    </form>
-  </div>
-</div>
-
-
-<script src="script/script.js"></script>
+    <script src="script/script.js"></script>
   </body>
 </html>
