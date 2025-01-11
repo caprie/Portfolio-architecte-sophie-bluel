@@ -1,8 +1,9 @@
-
+let openModalGalleryCallCount = 0; // Variable globale pour compter les appels
+let showWorksCallCount = 0; // Variable globale pour compter les appels
 
 //----------RECUPERATION DES API ----------
 
-// Fonction pour récupérer les travaux depuis l'API
+// Fonction pour récupérer les TRAVAUX depuis l'API
 async function getWorks() {
   const url = "http://localhost:5678/api/works";
   try {
@@ -17,7 +18,7 @@ async function getWorks() {
   }
 }
 
-// Fonction pour récupérer les catégories depuis l'API
+// Fonction pour récupérer les CATEGORIES depuis l'API
 async function getCategories() {
   const url = "http://localhost:5678/api/categories";
   try {
@@ -75,6 +76,7 @@ function toggleLoginLogoutButton() {
 
 // Fonction pour créer et afficher le menu des catégories
 async function createCategoryMenu() {
+
   // Récupère les catégories depuis l'API
   const categories = await getCategories();
   if (!categories) {
@@ -89,8 +91,10 @@ async function createCategoryMenu() {
   const portfolioSection = document.querySelector("#portfolio");
   const menu = document.createElement("div");
   menu.id = "menu-categories";
-  portfolioSection.insertBefore(menu,portfolioSection.querySelector(".gallery")
-);
+  portfolioSection.insertBefore(
+    menu,
+    portfolioSection.querySelector(".gallery")
+  );
 
   // ---------------------------- BUTTONS -------------------
 
@@ -137,7 +141,12 @@ function addFilterEvents() {
 // --------------------------- AFFICHAGE DE LA GAlLERY ----------------
 
 // Fonction pour afficher les travaux dans la galerie
+//let showWorksCallCount = 0;
+
 async function showWorks(categoryId = "all") {
+  showWorksCallCount++;
+  console.log(`showWorks appelée ${showWorksCallCount} fois`);
+
   const gallery = document.querySelector(".gallery");
   if (!gallery) {
     console.error("La galerie est introuvable");
@@ -156,9 +165,11 @@ async function showWorks(categoryId = "all") {
   // ----------------------- FILTRES ----------------------------
 
   // On filtre les travaux selon la catégorie choisie
-  const filteredWorks = categoryId === "all"
+  const filteredWorks =
+    categoryId === "all"
       ? works
       : works.filter((work) => work.categoryId === parseInt(categoryId));
+
   // Pour chaque travail filtré, on crée des éléments pour l'afficher dans la galerie
   filteredWorks.forEach((element) => {
     let figure = document.createElement("figure");
@@ -189,21 +200,20 @@ function toggleEditBar() {
 // ----------------- LANCEMENT DE LA PAGE CHARGEE ----------------
 
 // Fonction principale pour tout lancer quand la page est chargée
-document.addEventListener("DOMContentLoaded", () => {
-  
-  console.log("DOM entièrement chargé !");
-  //addphoto(); // Appelle la fonction après le chargement du DOM  ----------------------------------------------
- // const closeModalButton = document.querySelector(".close-modal");
- // const editButton = document.querySelector("#edit-mode");
 
+  
+
+  // Fonction d'initialisation pour afficher les catégories et les travaux
   async function init() {
     await createCategoryMenu();
-    showWorks();
+    await showWorks();
+    //toggleAdminFeatures(); // Affiche les fonctionnalités admin
 
     // Réinitialise l'état du bouton
     const editButton = document.querySelector("#edit-mode");
     if (editButton) {
       editButton.classList.add("hidden"); // Cache le bouton par défaut
+      
     }
 
     toggleAdminFeatures();
@@ -213,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Appelle la fonction d'initialisation dès le chargement de la page
   init();
-});
+
 // ----------------- INTERACTIONS UTILISATEUR ------------------
 
 // Gestion du clic sur le bouton "Modifier"
@@ -268,12 +278,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Fonction pour ouvrir la modale et charger les images
   function openModalGallery() {
+    openModalGalleryCallCount++;
+    console.log(`openModalGallery appelée ${openModalGalleryCallCount} fois`);
+
     modal.classList.remove("hidden");
     modalGallery.innerHTML = ""; // Vide la galerie existante
     console.log("Modale ouverte et galerie vidée."); // Vérifie que cette étape passe
 
     // Charge les images via l'API
-    getWorks()
+    getWorks() // Récupère les travaux
       .then((works) => {
         works.forEach((work) => {
           console.log(`Création de figure pour : ${work.title}`); // Vérifie chaque itération
@@ -342,7 +355,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (openModalButton) {
     openModalButton.addEventListener("click", openModalGallery);
     console.log("Modale ouverte, lancement de addphoto()");
-    
   }
 
   // Fermer la modale au clic en dehors
@@ -376,10 +388,12 @@ function closeModal(modalId) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  console.log("DOM chargé, initialisation des modales...");
   // Bouton pour ouvrir la deuxième modale depuis la première
   const addPhotoButton = document.querySelector("#add-photo");
-  
+
   if (addPhotoButton) {
+    console.log("Bouton Ajouter une photo trouvé.");
     addPhotoButton.addEventListener("click", () => {
       closeModal("#gallery-modal"); // Ferme la première modale
       openModal("#photo-modal"); // Ouvre la deuxième modale
@@ -389,19 +403,22 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Boutons pour fermer la deuxième modale
   const closePhotoModalButton = document.querySelector(".close-photo-modal");
   if (closePhotoModalButton) {
-    closePhotoModalButton.addEventListener("click", () =>
-      closeModal("#photo-modal")
-    );
+    console.log("Bouton Fermer la modale photo trouvé.");
+    closePhotoModalButton.addEventListener("click", () => {
+      console.log("Bouton Fermer la modale photo cliqué.");
+      closeModal("#photo-modal");
+    });
   }
-
   // Ajout dynamique des catégories dans la deuxième modale
   const categorySelect = document.querySelector("#category");
 
   if (categorySelect) {
+    console.log("Élément select pour les catégories trouvé.");
     try {
       const categories = await getCategories(); // Récupère les catégories via l'API
       if (categories && categories.length > 0) {
         // Utilisation d'un Set pour éviter les doublons
+        console.log("Catégories récupérées :", categories);
         const uniqueCategoryNames = new Set();
 
         categories.forEach((category) => {
@@ -436,106 +453,118 @@ document.querySelector("#image").addEventListener("change", (event) => {
   if (file) {
     const reader = new FileReader();
     reader.onload = (e) => {
-      previewImage.src = e.target.result; // Affecte l'URL de l'image au src
+      previewImage.src = e.target.result; // Récupère l'URL de l'image
       previewImage.style.display = "block"; // Affiche l'image
     };
-    reader.readAsDataURL(file); // Convertit le fichier en base64
+    reader.readAsDataURL(file); // Lit le fichier comme une URL
+
+
+    // ajouter des conditions
+
+
   } else {
     // Si aucun fichier sélectionné
     previewImage.style.display = "none";
     previewImage.src = "";
   }
+
+  
 });
 
 // Déclare toutes tes fonctions principales
-function addphoto() { // Ajoute cette ligne pour déclarer la fonction
+function addphoto() {
+  // déclarer la fonction
   console.log("Fonction addphoto appelée"); // Vérifie si la fonction est exécutée
-  
 
   const form = document.querySelector("#add-project-form"); // Sélectionne le formulaire
-  if (!form) { // Si le formulaire n'est pas trouvé
-    
+  if (!form) {
+    // Si le formulaire n'est pas trouvé
+
     console.error("Le formulaire n'est pas trouvé !");
     return; // Arrête la fonction ici
   }
 
-    console.log("Formulaire trouvé :", form); // Affiche le formulaire trouvé
-  
-    // Ajoute un écouteur d'événements pour le formulaire
-    form.addEventListener("submit", async (event) => { // Ajoute un écouteur d'événement pour le formulaire
-      event.preventDefault(); // Empêche le comportement par défaut
-      console.log("Formulaire soumis !"); // Ajoute cette ligne pour vérifier que le formulaire est soumis
+  console.log("Formulaire trouvé :", form); // Affiche le formulaire trouvé
 
-      //recupère les données du formulaire
-      const formData = new FormData(form); // Crée un objet FormData
-      console.log("données du formulaire:", [...formData.entries()]); // Ajoute cette ligne pour afficher les données soumises.
+  //  écouteur d'événements pour le formulaire
+  form.addEventListener("submit", async (event) => {
+    // ligne pour ajouter un écouteur d'événements
+    event.preventDefault(); // Empêche le comportement par défaut
+    console.log("Formulaire soumis !"); // Ajoute cette ligne pour vérifier que le formulaire est soumis
 
-      //recupère le token pour l'authentification
-      const token = localStorage.getItem("authToken");  // Récupère le token
+    //recupère les données du formulaire
+    const formData = new FormData(form); // Récupère les données du formulaire
+    console.log("données du formulaire:", [...formData.entries()]); // Ajoute cette ligne pour afficher les données soumises.
 
-      try { // Ajoute un bloc try...catch pour gérer les erreurs
+    //recupère le token pour l'authentification
+    const token = localStorage.getItem("authToken"); // Récupère le token
+
+    try {
+      // Ajoute un bloc try...catch pour gérer les erreurs
+      // Envoie les données au serveur
+      const response = await fetch("http://localhost:5678/api/works", {
         // Envoie les données au serveur
-        const response = await fetch("http://localhost:5678/api/works", {   // Envoie les données au serveur
-          method: "POST",     // Utilise la méthode POST
-          headers: {         // Ajoute les headers
-            Authorization: `Bearer ${token}`, // Ajoute le token au header
-          },
-          body: formData, // Contient l'image et les autres champs
-        });
+        method: "POST", // Utilise la méthode POST
+        headers: {
+          // Ajoute les headers
+          Authorization: `Bearer ${token}`, // Ajoute le token d'authentification
+        },
+        body: formData, // Contient l'image et les autres champs
+      });
 
-        if (response.ok) { // Si la réponse est ok
-          const newWork = await response.json();  // Récupère le travail ajouté
-          console.log("Travail ajouté :", newWork); // Affiche le travail ajouté
+      if (response.ok) {
+        // Si la réponse est ok
+        const newWork = await response.json(); // Récupère le travail ajouté
+        
 
-          //ajoute le travail à la galerie
-          addWorkToGallery(newWork); // Appelle la fonction pour ajouter le travail
-          closeModal("#photo-modal"); //------------------------------------- ajout recent
-          openModal("#gallery-modal"); //------------------------------------- ajout recent
-          if (response.ok) {
-            //const newWork = await response.json();
-            //console.log("Travail ajouté :", newWork);
-        } else { // Si la réponse n'est pas ok
+        //ajoute le travail à la galerie
+        
+        closeModal("#photo-modal"); //------------------------------------- ajout recent
+        
+        showWorks(); // Recharge les catégories et les travaux
+      } else {
+          // Si la réponse n'est pas ok
           console.error(`Erreur lors de l'ajout : ${response.status}`); // Affiche le statut de la réponse
+        }
+      
+    } catch (error) {
+      // Si une erreur se produit
+      console.error("Erreur lors de l'envoi des données", error); // Affiche l'erreur
     }
-  }
-      } catch (error) { // Si une erreur se produit
-        console.error("Erreur lors de l'envoi des données", error);   // Affiche l'erreur
-      }
-    });
- 
+  });
+
   //} else { // Si le formulaire n'est pas trouvé
-    //console.error("Formulaire introuvable."); // Affiche un message d'erreur
-  }
- // Ajoute cette ligne pour fermer la fonction
+  //console.error("Formulaire introuvable."); // Affiche un message d'erreur
+}
+// Ajoute cette ligne pour appeler la fonction
 
 // Fonction pour ajouter un travail à la galerie
-function addWorkToGallery(work) {   // Ajoute cette ligne pour déclarer la fonction
-  const gallery = document.querySelector(".gallery");   // Sélectionne la galerie
-  if (!gallery) {   // Si la galerie n'est pas trouvée
-    console.error("Galerie introuvable.");  // Affiche un message d'erreur
+function addWorkToGallery(work) {
+  // Ajoute cette ligne pour déclarer la fonction
+  const modalGallery = document.querySelector(".gallery"); // Sélectionne la galerie
+  if (!modalGallery) {
+    // Si la galerie n'est pas trouvée
+    console.error("Galerie introuvable."); // Affiche un message d'erreur
     return; // Arrête la fonction ici pour éviter les erreurs
   }
 
   // Vérifie si l'image existe déjà dans la galerie
-  const existingImages = Array.from(gallery.querySelectorAll("img"));
+  const existingImages = Array.from(gallery.querySelectorAll("img")); // Sélectionne toutes les images
   const isImageAlreadyPresent = existingImages.some(
-    (img) => img.src === work.imageUrl);
+    (img) => img.src === work.imageUrl
+  ); // Vérifie si l'image est déjà présente
 
-
-  if (isImageAlreadyPresent) {
-    console.log("L'image existe déjà dans la galerie.");
-    return; // Si l'image existe, on quitte la fonction
-  }
+  
 
   // Crée un élément figure pour le travail
   const figure = document.createElement("figure"); // Crée une figure
 
-  const img = document.createElement("img");  // Crée une image
+  const img = document.createElement("img"); // Crée une image
   img.src = work.imageUrl; // Récupère l'URL de l'image
   img.alt = work.title; // Récupère le titre du travail
 
-  const figcaption = document.createElement("figcaption");  // Crée une légende
-  figcaption.textContent = work.title;  // Récupère le titre du travail
+  const figcaption = document.createElement("figcaption"); // Crée une légende
+  figcaption.textContent = work.title; // Récupère le titre du travail
 
   // Ajoute l'image et la légende à la figure
   figure.appendChild(img); // Ajoute l'image à la figure
@@ -543,138 +572,14 @@ function addWorkToGallery(work) {   // Ajoute cette ligne pour déclarer la fonc
 
   // Ajoute la figure à la galerie
   gallery.appendChild(figure);
-  console.log("Travail ajouté : ${work.title}");
-} //else {
-  //console.log("L'image existe déjà dans la galerie.");
-//}
+  
+} 
 
-// place l'ecouteur d'événement pour ajouter un travail
-document.addEventListener("DOMContentLoaded", addphoto);  // Appelle la fonction pour ajouter un travail
-console.log("Le fichier JS est chargé.");
+
+
 addphoto(); // Appel de la fonction pour ajouter un travail
 
 
-//function addphoto() {
-const form = document.querySelector("#add-project-form");
-
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    console.log("Formulaire soumis !");
-
-    const formData = new FormData(form);
-    console.log([...formData.entries()]); // Ajoute cette ligne pour afficher les données soumises.
-    const token = localStorage.getItem("authToken");
-
-    try {
-      const response = await fetch("http://localhost:5678/api/works", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formData,
-      });
-
-      console.log("Réponse du serveur :", response);
-
-      if (response.ok) {
-        console.log("Travail ajouté avec succès.");
-        closeModal("#photo-modal"); // Ferme la modale
-        openModal("#gallery-modal"); // Ouvre la modale précédente
-      } else {
-        console.error(`Erreur lors de l'ajout : ${response.status}`);
-      }
-    } catch (error) {
-      console.error("Erreur lors de la requête POST :", error);
-    }
-  });
 
 
 
-
-
-
-
-
-
-
-
-/*addphoto(); // Appel de la fonction pour ajouter un travail*/
-// Écouteur d'événement pour la soumission du formulaire 'formAjout'
-document.querySelector('#add-project-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  // Récupération des champs du formulaire
-  const inputPhoto = document.querySelector('#image');
-  const inputTitre = document.querySelector('#title');
-  const selectCategorie = document.querySelector('#category');
-
-  // Création des données du formulaire
-  const formData = new FormData();
-  formData.append('title', inputTitre.value);
-  formData.append('image', inputPhoto.files[0]);
-  formData.append('category', selectCategorie.value);
-
-  const token = localStorage.getItem('authToken');
-
-  if (token) {
-    try {
-      // Requête POST pour envoyer les données au backend
-      const response = await fetch('http://localhost:5678/api/works', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formData,
-      });
-
-      if (response.ok) {
-        const newWork = await response.json();
-
-        // Ajouter directement le projet à la galerie (évite les doublons)
-        addWorkToGallery(newWork);
-
-        // Réinitialiser le formulaire
-        inputPhoto.value = '';
-        inputTitre.value = '';
-        selectCategorie.value = '';
-        console.log('Projet ajouté avec succès.');
-      } else {
-        console.error('Erreur lors de la création du projet');
-      }
-    } catch (error) {
-      console.error('Erreur lors de la requête POST', error);
-    }
-  } else {
-    console.error('Token non trouvé.');
-  }
-});
-
-// Fonction pour ajouter un projet dans la galerie sans doublon
-function addWorkToGallery(work) {
-  const gallery = document.querySelector('.gallery');
-
-  // Vérifie si l'image est déjà présente
-  const existingImages = Array.from(gallery.querySelectorAll('img'));
-  const isImagePresent = existingImages.some((img) => img.src === work.imageUrl);
-
-  if (isImagePresent) {
-    console.warn('L’image existe déjà dans la galerie.');
-    return;
-  }
-
-  // Crée les éléments nécessaires
-  const figure = document.createElement('figure');
-  const img = document.createElement('img');
-  img.src = work.imageUrl;
-  img.alt = work.title;
-
-  const caption = document.createElement('figcaption');
-  caption.textContent = work.title;
-
-  // Ajoute les éléments à la figure
-  figure.appendChild(img);
-  figure.appendChild(caption);
-
-  // Ajoute la figure à la galerie
-  gallery.appendChild(figure);
-}
