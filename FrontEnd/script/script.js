@@ -1,3 +1,10 @@
+console.log("Script chargé !");
+console.log("Champ titre :", document.querySelector("#title"));
+console.log("Champ catégorie :", document.querySelector("#category"));
+console.log("Champ photo :", document.querySelector("#image"));
+console.log("Bouton valider :", document.querySelector("#submit-photo"));
+console.log("Formulaire :", document.querySelector("#add-project-form"));
+
 let openModalGalleryCallCount = 0; // Variable globale pour compter les appels
 let showWorksCallCount = 0; // Variable globale pour compter les appels
 
@@ -231,13 +238,16 @@ document.querySelector("#edit-mode").addEventListener("click", () => {
   const button = document.querySelector("#edit-mode");
 
   // Appliquer la classe pour l'animation
-  button.classList.add("animate-dissolve");
+  button.classList.add("animate-dissolve"); 
+  
 
   // Après l'animation, rediriger vers la nouvelle page
   setTimeout(() => {
-    window.location.href = "#"; // vers la modale ensuite
-  }, 300);
+    openModal("#gallery-modal"); // Ouvre la modale galerie
+  }, 300); 
+  console.log("test bouton: bouton appel modifier")
 });
+
 
 // ----------------- FONCTIONNALITÉS ADMIN ---------------------
 /*après init() pour etre exécuté au chargement de la page, après le contenu dynamique.*/
@@ -280,7 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function openModalGallery() {
     openModalGalleryCallCount++;
     console.log(`openModalGallery appelée ${openModalGalleryCallCount} fois`);
-
+    window.location.href = "#gallery-modal"; // Déplace la fenêtre vers la modale
     modal.classList.remove("hidden");
     modalGallery.innerHTML = ""; // Vide la galerie existante
     console.log("Modale ouverte et galerie vidée."); // Vérifie que cette étape passe
@@ -399,6 +409,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       openModal("#photo-modal"); // Ouvre la deuxième modale
     });
   }
+  
 
   // Boutons pour fermer la deuxième modale
   const closePhotoModalButton = document.querySelector(".close-photo-modal");
@@ -457,18 +468,11 @@ document.querySelector("#image").addEventListener("change", (event) => {
       previewImage.style.display = "block"; // Affiche l'image
     };
     reader.readAsDataURL(file); // Lit le fichier comme une URL
-
-
-    // ajouter des conditions
-
-
   } else {
     // Si aucun fichier sélectionné
     previewImage.style.display = "none";
     previewImage.src = "";
   }
-
-  
 });
 
 // Déclare toutes tes fonctions principales
@@ -478,25 +482,136 @@ function addphoto() {
 
   const form = document.querySelector("#add-project-form"); // Sélectionne le formulaire
   if (!form) {
-    // Si le formulaire n'est pas trouvé
-
     console.error("Le formulaire n'est pas trouvé !");
     return; // Arrête la fonction ici
   }
 
   console.log("Formulaire trouvé :", form); // Affiche le formulaire trouvé
 
+  // Sélecteurs des messages d'erreur
+  const titleErrorMessage = document.querySelector("#title-photo-modal + .error-message");
+  const categoryErrorMessage = document.querySelector(".field-field-category .error-message");
+  const photoErrorMessage = document.querySelector(".icon-and-photo-container .error-message");
+
+  console.log("Titre Error Message trouvé :", titleErrorMessage);
+  console.log("Catégorie Error Message trouvé :", categoryErrorMessage);
+  console.log("Photo Error Message trouvé :", photoErrorMessage);
+
+
+  // Fonction pour mettre à jour l'état du bouton "Valider"
+  function updateSubmitButtonState() {
+    const titleField = document.querySelector("#title-photo-modal");
+    const categoryField = document.querySelector("#category");
+    const imageField = document.querySelector("#image");
+    const submitButton = document.querySelector("#submit-photo");
+
+    // Vérifie si tous les champs sont remplis
+    const isTitleFilled = titleField.value.trim() !== "";
+    const isCategorySelected = categoryField.value !== "";
+    const isImageAdded = imageField.files.length > 0;
+
+    // Active/désactive le bouton en fonction des champs remplis
+    if (isTitleFilled && isCategorySelected && isImageAdded) {
+      submitButton.disabled = false;
+      submitButton.style.backgroundColor = "#1d6154"; // Passe au vert
+    } else {
+      submitButton.disabled = true;
+      submitButton.style.backgroundColor = "#a7a7a7"; // Reste grisé
+    }
+  }
+
+  // Cache initialement les messages d'erreur
+  titleErrorMessage.style.display = "none";
+  categoryErrorMessage.style.display = "none";
+  photoErrorMessage.style.display = "none";
+
+  // Ajoute des écouteurs pour surveiller les champs
+  document.querySelector("#title-photo-modal").addEventListener("input", updateSubmitButtonState);
+  document.querySelector("#category").addEventListener("change", updateSubmitButtonState);
+  document.querySelector("#image").addEventListener("change", updateSubmitButtonState);
+
+  // Appelle une première fois pour initialiser l'état du bouton
+  updateSubmitButtonState();
+
   //  écouteur d'événements pour le formulaire
   form.addEventListener("submit", async (event) => {
-    // ligne pour ajouter un écouteur d'événements
     event.preventDefault(); // Empêche le comportement par défaut
     console.log("Formulaire soumis !"); // Ajoute cette ligne pour vérifier que le formulaire est soumis
 
-    //recupère les données du formulaire
+    // Sélecteurs des champs
+    const titleField = document.querySelector("#title-photo-modal");
+    const categoryField = document.querySelector("#category");
+    const imageField = document.querySelector("#image");
+    const submitButton = document.querySelector("#submit-photo");
+
+    console.log("Bouton Valider :", submitButton);
+    //const errorMessage = imageField.closest(".icon-and-photo-container").querySelector(".error-message");
+
+    // Sélecteurs des messages d'erreur
+    const titleErrorMessage = document.querySelector("#title-photo-modal + .error-message");
+    const categoryErrorMessage = document.querySelector(".field-field-category .error-message");
+    const photoErrorMessage = document.querySelector(".icon-and-photo-container .error-message");
+
+    // Vérifie si les messages d'erreur sont trouvés
+    console.log("Titre Error Message :", titleErrorMessage);
+    console.log("Catégorie Error Message :", categoryErrorMessage);
+    console.log("Photo Error Message :", photoErrorMessage);
+
+    let isValid = true; // Initialise la validation à true
+
+    // Vérifier le champ Titre
+    //const titleErrorMessage = document.querySelector("#title-photo-modal + .error-message");
+      console.log("Titre :", titleField.value.trim());
+      if (!titleField.value.trim()) {
+      titleErrorMessage.style.display = "block";
+      console.log("Erreur : Le titre est obligatoire.");
+      isValid = false;
+    } else {
+      titleErrorMessage.style.display = "none";
+    }
+
+    // Vérifier la catégorie
+    //const categoryErrorMessage = document.querySelector(".field-field-category .error-message");
+    console.log("Catégorie sélectionnée :", categoryField.value);
+    if (!categoryField.value) {
+      categoryErrorMessage.style.display = "block";
+      console.log("Erreur : Vous devez sélectionner une catégorie.");
+      isValid = false;
+    } else {
+      categoryErrorMessage.style.display = "none";
+    }
+
+
+
+    // Vérifier l'ajout de photo
+    //const photoErrorMessage = document.querySelector(".icon-and-photo-container .error-message");
+    console.log("Nombre de fichiers ajoutés :", imageField.files.length);
+    if (!imageField.files.length) {
+      photoErrorMessage.style.display = "block";
+      console.log("Erreur : Vous devez ajouter une photo.");
+      isValid = false;
+    } else {
+      photoErrorMessage.style.display = "none";
+    }
+
+    // Si le formulaire n'est pas valide, on stoppe ici
+    if (!isValid) {
+      console.log("Validation échouée !");
+      return;
+      
+    }
+
+    console.log("Nombre de fichiers ajoutés :", imageField.files.length);
+
+     // Si le formulaire est valide
+      console.log("Formulaire validé !");
+    
+
+    // Récupère les données du formulaire
     const formData = new FormData(form); // Récupère les données du formulaire
     console.log("données du formulaire:", [...formData.entries()]); // Ajoute cette ligne pour afficher les données soumises.
 
-    //recupère le token pour l'authentification
+    // Récupère le token pour l'authentification
     const token = localStorage.getItem("authToken"); // Récupère le token
 
     try {
@@ -512,49 +627,54 @@ function addphoto() {
         body: formData, // Contient l'image et les autres champs
       });
 
+      console.log(response); // Affiche la réponse
+
+      
       if (response.ok) {
         // Si la réponse est ok
         const newWork = await response.json(); // Récupère le travail ajouté
-        
+        console.log("Travail ajouté :", newWork); // Affiche le travail ajouté
 
-        //ajoute le travail à la galerie
-        
-        closeModal("#photo-modal"); //------------------------------------- ajout recent
-        
+        // Ajoute le travail à la galerie
+        addWorkToGallery(newWork);
+        closeModal("#photo-modal"); // Ferme la modale
         showWorks(); // Recharge les catégories et les travaux
       } else {
-          // Si la réponse n'est pas ok
-          console.error(`Erreur lors de l'ajout : ${response.status}`); // Affiche le statut de la réponse
-        }
+        // Si la réponse n'est pas ok
+        console.error(`Erreur lors de l'ajout : ${response.status}`); // Affiche le statut de la réponse
+        // Crée un message d'erreur visible dans le formulaire
+        const errorBox = document.createElement("div");
+        errorBox.className = "error-login";
+        errorBox.textContent = `Erreur ${response.status} : Impossible d'ajouter la photo.`;
       
+  // Ajoute ce message en haut du formulaire
+  const form = document.querySelector("#add-project-form");
+  form.prepend(errorBox);
+      }
     } catch (error) {
       // Si une erreur se produit
       console.error("Erreur lors de l'envoi des données", error); // Affiche l'erreur
     }
   });
-
-  //} else { // Si le formulaire n'est pas trouvé
-  //console.error("Formulaire introuvable."); // Affiche un message d'erreur
 }
-// Ajoute cette ligne pour appeler la fonction
 
 // Fonction pour ajouter un travail à la galerie
 function addWorkToGallery(work) {
-  // Ajoute cette ligne pour déclarer la fonction
-  const modalGallery = document.querySelector(".gallery"); // Sélectionne la galerie
-  if (!modalGallery) {
-    // Si la galerie n'est pas trouvée
-    console.error("Galerie introuvable."); // Affiche un message d'erreur
+  const gallery = document.querySelector(".gallery"); // Sélectionne la galerie
+  if (!gallery) {
+    console.error("Galerie introuvable !");
     return; // Arrête la fonction ici pour éviter les erreurs
   }
 
   // Vérifie si l'image existe déjà dans la galerie
   const existingImages = Array.from(gallery.querySelectorAll("img")); // Sélectionne toutes les images
-  const isImageAlreadyPresent = existingImages.some(
-    (img) => img.src === work.imageUrl
-  ); // Vérifie si l'image est déjà présente
+  const isDuplicate = existingImages.some((img) => img.src === work.imageUrl);
 
-  
+  // Vérifie si l'image est déjà présente
+  if (isDuplicate) {
+    console.warn("Image déjà existante dans la galerie :", work.imageUrl);
+    return;
+  }
 
   // Crée un élément figure pour le travail
   const figure = document.createElement("figure"); // Crée une figure
@@ -572,13 +692,11 @@ function addWorkToGallery(work) {
 
   // Ajoute la figure à la galerie
   gallery.appendChild(figure);
-  
-} 
 
-
+  console.log("Travail ajouté :", work.title);
+}
 
 addphoto(); // Appel de la fonction pour ajouter un travail
-
 
 
 

@@ -98,6 +98,7 @@
         <div class="gallery-modal">
           <!-- Contenu de la galerie modale -->
         </div>
+        <div class="separator-line-gallery"></div>
         <button id="add-photo">Ajouter une photo</button>
       </div>
     </div>
@@ -123,26 +124,25 @@
                 type="file"
                 id="image"
                 name="image"
-                accept="image/*"
-                required
-                hidden
-              />
+                accept="image/*"/>
             </label>
             <p class="image-format">jpg, png : 4mo max</p>
+            <p class="error-message">Vous devez ajouter une photo.</p>
           </div>
 
           <div id="preview-container">
             <img
               id="image-preview"
               alt="Aperçu de l'image"
-              style="display: none"
-            />
+              style="display: none"/>
           </div>
 
           <div class="form-fields-container">
             <div class="field">
-              <label for="title" id="photo-title">Titre</label>
-              <input type="text" id="title" name="title" required />
+              <label for="title-photo-modal" id="photo-title">Titre</label>
+              <input type="text" id="title-photo-modal" name="title" required />
+ 
+              <p class="error-message">Le titre est obligatoire.</p>
             </div>
 
             <div class="field-field-category">
@@ -150,12 +150,18 @@
               <select id="category" name="category" required>
                 <option value="" disabled selected hidden></option>
               </select>
+              <p class="error-message">
+                Vous devez sélectionner une catégorie.</p>
             </div>
 
             <!-- Ligne de séparation -->
             <div class="separator-line"></div>
 
-            <button type="submit" id="submit-photo">Valider</button>
+            <!-- bouton valider -->
+
+            <button type="submit" id="submit-photo" class="validate-btn" disabled>Valider</button>
+            
+
           </div>
         </form>
       </div>

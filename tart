@@ -1,0 +1,32 @@
+[33m0cb0adb[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m debug double affichage galerie
+[33m94c0f69[m modal nouveaux travaux avec doublons
+[33m04c71ec[m ajout nouveaux travaux en cours, a débuger
+[33m4b14935[m modale ajout photo avec ajout formulaire ok
+[33m40cf324[m fin css modal 2
+[33m28ff685[m css 1ere partie modale ajout photo
+[33m783f744[m modal ajout photo- mise en forme partielle
+[33m2b14367[m formulaire ajout photo sans mise en fome 2
+[33mcd7df4e[m formulaire ajout photo sans mise en forme
+[33mc4bf9ca[m modale ajout photo ok
+[33m9da862c[m modale_1 icones+styles ok
+[33m68ef863[m modale 1 sans poubelle
+[33mfa13ed5[m correction btn modifier center
+[33m14171b6[m correction btn modifier
+[33mc6d9099[m barre header ok + pb affichage logout
+[33mdd2b721[m css btn "modifier" ok
+[33m0f870c3[m correction pb connexion + placement et mise en forme button "modifier"
+[33m08bb3af[m PB login
+[33m50f9b4b[m MAJ commits login
+[33mb3c6256[m connection backend
+[33m8445de0[m page login terminée
+[33m1e4af72[m CSS liens nav ok
+[33m5d72cbc[m login MdP oublié CSS ok
+[33m79e30c2[m petites corrections
+[33m9389da1[m mise en place page log in css en cours
+[33m3ca5ad6[m nav header + lien page log in
+[33m4dc1765[m css filter
+[33m5253b5c[m ajout commentaires
+[33me6c82de[m mise en place categories + boutons
+[33mc4d1fbf[m recuperation gallery img ok
+[33ma4bd63c[m récupération des travaux via API en cours
+[33m43a86db[m Initial commit

@@ -102,10 +102,15 @@ nav ul {
   list-style-type: none;
   font-size: 12px;
   font-weight: 300;
+  color: #3d3d3d; /* Added a valid color value */
 }
 nav li {
   padding: 0 10px;
   font-size: 1.2em;
+}
+
+nav li:hover {
+  color: #b1663c;
 }
 
 li:hover {
@@ -237,12 +242,14 @@ footer nav ul {
 }
 a {
   color: #3d3d3d;
-  text-decoration: none;
+  text-decoration: underline;
   font-size: 12px;
+  
 }
 
 a:hover {
   font-weight: bold;
+  color: #b1663c;
 }
 
 .hidden {
@@ -352,6 +359,11 @@ a:hover {
   color: #b1663c;
 }
 
+.close:focus {
+  outline: none;
+  color: #b1663c;
+}
+
 .arrow-left {
   position: absolute;
   left: 30px;
@@ -383,7 +395,7 @@ a:hover {
   border-radius: 20px;
   font-family: "Syne";
   cursor: pointer;
-  margin-top: 120px;
+  margin-top: 5px;
   margin-bottom: 35px;
 }
 
@@ -446,6 +458,7 @@ a:hover {
   font-family: "Syne", sans-serif;
   font-size: 26px;
   margin-top: 40px;
+  margin-bottom: 30px;
   justify-content: center;
   align-items: center;
   font-weight: 400;
@@ -504,6 +517,14 @@ figure {
   cursor: pointer;
   z-index: 10;
 }
+
+.separator-line-gallery {
+  width: 500px; /* largeur */
+  height: 1px; /* Épaisseur de la ligne */
+  background-color: #b3b3b3; /* Couleur de la ligne */
+  margin: 45px 55px 0px 50px; /* Espacement autour de la ligne */
+  margin-bottom: 70px;
+}
 .add-photo-label {
   background-color: #e8f1f6;
 }
@@ -550,6 +571,10 @@ figure {
   left: 50%; /* Centre horizontalement */
   transform: translateX(-50%); /* Correction pour le centrage */
   text-align: center; /* Centre l'image dans le conteneur */
+}
+
+#image {
+  display: none; /* Masque l'élément */
 }
 
 #image-preview {
@@ -607,7 +632,7 @@ figure {
 
 #photo-title {
   position: relative;
-  margin-bottom: -10px;
+  /*margin-bottom: -10px;
   /*border: 2px turquoise solid;*/
   margin-right: 460px;
   width: 32px;
@@ -617,6 +642,7 @@ figure {
   color: #3d3d3d;
   font-weight: 500;
   display: flex;
+  /*border: none;*/
 }
 
 #category {
@@ -629,6 +655,10 @@ figure {
   height: 25px;
   background-color: #fff;
   box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3);
+  font-size: 14px;
+  font-weight: 300;
+  font-family: "Work Sans"; 
+  color: #3d3d3d;
 }
 #category-list {
   position: relative;
@@ -684,10 +714,11 @@ figure {
   color: #3d3d3d;
   padding: 10px;
   border: 0px;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   width: 100%; /* S'adapte à la largeur du conteneur parent */
-  background-color: #f1f1f1;
+  background-color: #fff;
   font-family: "Work Sans", sans-serif;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 .field input:focus,
@@ -721,4 +752,18 @@ figure {
   cursor: pointer;
   align-self: center; /* Centre le bouton dans le conteneur */
   transition: background-color 0.3s ease;
+}
+
+.error-message {
+  display: none; /* Tous les messages d'erreur sont cachés par défaut */
+  color: red;    /* Si affichés, ils seront en rouge */
+  font-size: 0.9em;
+  margin-top: 5px;
+  background-color: inherit;
+}
+
+#title-photo-modal:focus, 
+#category:focus {
+  outline: none; /* Supprime le cadre bleu par défaut */
+  /*box-shadow: none;  Supprime également l'ombre si elle existe */
 }
