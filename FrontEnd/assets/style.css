@@ -102,7 +102,7 @@ nav ul {
   list-style-type: none;
   font-size: 12px;
   font-weight: 300;
-  color: #3d3d3d; /* Added a valid color value */
+  color: #3d3d3d;
 }
 nav li {
   padding: 0 10px;
@@ -139,7 +139,7 @@ li:hover {
   margin-bottom: 0.5em;
 }
 #portfolio {
-  position: relative; /* Permet de positionner les enfants avec position: absolute */
+  position: relative; /* Permet de positionner les éléments enfants */
 }
 #portfolio h2 {
   text-align: center;
@@ -244,7 +244,6 @@ a {
   color: #3d3d3d;
   text-decoration: underline;
   font-size: 12px;
-  
 }
 
 a:hover {
@@ -326,7 +325,7 @@ a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Fond noir avec opacité */
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -417,7 +416,7 @@ a:hover {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  z-index: 1000; /* S'assure que la modale est au premier plan */
+  z-index: 1000;
 }
 
 #add-project-form {
@@ -435,7 +434,6 @@ a:hover {
   margin-top: 31px;
   padding-top: 82px;
   border-radius: 5px;
-  /*border: 2px solid blue*/
 }
 
 /* Classe pour afficher la modale */
@@ -444,15 +442,6 @@ a:hover {
   opacity: 1;
   transform: scale(1);
 }
-
-/*.close-modal {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 25px;
-  cursor: pointer;
-  color: #333;
-}*/
 
 .modal-content h3 {
   font-family: "Syne", sans-serif;
@@ -508,20 +497,20 @@ figure {
 
 .trash-icon {
   position: absolute; /* Positionne par rapport à la figure */
-  top: 5px; /* Distance par rapport au haut de la figure */
-  right: 5px; /* Distance par rapport à la droite de la figure */
-  font-size: 17px; /* Taille de l'icône */
-  background-color: #fff; /* Fond blanc pour l'icône */
-  color: black; /* Couleur noire pour la poubelle */
+  top: 5px;
+  right: 5px;
+  font-size: 17px;
+  background-color: #fff;
+  color: black;
   padding: 2px;
   cursor: pointer;
   z-index: 10;
 }
 
 .separator-line-gallery {
-  width: 500px; /* largeur */
-  height: 1px; /* Épaisseur de la ligne */
-  background-color: #b3b3b3; /* Couleur de la ligne */
+  width: 500px;
+  height: 1px;
+  background-color: #b3b3b3;
   margin: 45px 55px 0px 50px; /* Espacement autour de la ligne */
   margin-bottom: 70px;
 }
@@ -529,15 +518,14 @@ figure {
   background-color: #e8f1f6;
 }
 .montain-sun {
-  display: flex; /* Active flexbox */
-  justify-content: center; /* Centre horizontalement */
-  align-items: center; /* Centre verticalement */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: transparent;
-  font-size: 30px; /* Taille de l’icône */
-  color: #a7a7a7; /* Couleur de l’icône */
-  width: 55px; /* Largeur de l’icône */
+  font-size: 30px;
+  color: #a7a7a7;
+  width: 55px;
   height: 55px;
-  /*border: 2px solid purple;*/
   padding: 2px;
 }
 .montain-sun i {
@@ -554,7 +542,6 @@ figure {
   text-align: center;
   align-items: center;
   background-color: transparent;
-
   font-size: 14px;
   text-align: center;
   color: #306685;
@@ -567,10 +554,10 @@ figure {
 
 #preview-container {
   position: absolute; /* Permet de positionner l'aperçu par rapport à son conteneur parent */
-  top: 118px; /* Ajustez cette valeur pour placer l'image au-dessus */
-  left: 50%; /* Centre horizontalement */
+  top: 118px;
+  left: 50%;
   transform: translateX(-50%); /* Correction pour le centrage */
-  text-align: center; /* Centre l'image dans le conteneur */
+  text-align: center;
 }
 
 #image {
@@ -581,8 +568,6 @@ figure {
   width: 171px;
   height: 200px;
   object-fit: cover;
-  /*border: 1px solid #ccc;
-  border-radius: 5px;*/
 }
 
 /* Conteneur des champs "Titre", "Catégorie" et "Valider" */
@@ -590,13 +575,10 @@ figure {
   margin-top: 40px; /* Pour s'assurer qu'il ne chevauche pas l'autre conteneur */
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Espace entre les champs */
+  gap: 20px;
 }
 
-/* Ajoute une bordure pour voir les conteneurs distincts (optionnel pour debug) */
-.icon-and-photo-container 
-/*.form-fields-container */ {
-  /*border: 1px dashed red;*/
+.icon-and-photo-container {
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -613,27 +595,19 @@ figure {
 .image-format {
   font-size: 10px;
   font-weight: 400;
-  /*line-height: 19.2px;*/
   text-align: center;
-  /*text-underline-position: from-font;*/
-  /*text-decoration-skip-ink: none;*/
   color: #444;
   height: 12px;
   padding-left: 14px;
   padding-right: 14px;
-  /*border-radius: 60px;*/
   background-color: transparent;
-  /*cursor: pointer;*/
   margin-top: -15px;
-  /*width : 173px;*/
   padding-top: 2px;
   font-family: "Work Sans";
 }
 
 #photo-title {
   position: relative;
-  /*margin-bottom: -10px;
-  /*border: 2px turquoise solid;*/
   margin-right: 460px;
   width: 32px;
   height: 16px;
@@ -642,35 +616,28 @@ figure {
   color: #3d3d3d;
   font-weight: 500;
   display: flex;
-  /*border: none;*/
 }
 
 #category {
-  /*position: relative;*/
   margin-top: 55px;
   border: 0px;
   margin-right: 0px;
-  /*margin-top: 100px;*/
   width: 500px;
   height: 25px;
   background-color: #fff;
   box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.3);
   font-size: 14px;
   font-weight: 300;
-  font-family: "Work Sans"; 
+  font-family: "Work Sans";
   color: #3d3d3d;
 }
 #category-list {
   position: relative;
   margin-top: 55px;
-  /*border: 2px solid salmon;*/
-  /*width: 65px;
-  height: 16px;*/
   font-size: 14px;
   font-weight: 500;
   font-family: "Work Sans";
   color: #3d3d3d;
-  /*display: block;*/
   margin-right: 430px;
   font-family: Work Sans;
   top: 35px;
@@ -695,11 +662,10 @@ figure {
 }
 
 .field-label {
-  /* Style pour les labels */
   font-size: 14px;
   font-weight: 500;
   color: #3d3d3d;
-  margin-bottom: 5px; /* Espace sous le label */
+  margin-bottom: 5px;
   font-family: "Work Sans", sans-serif;
   width: 32px;
   margin-right: 470px;
@@ -714,7 +680,7 @@ figure {
   color: #3d3d3d;
   padding: 10px;
   border: 0px;
-  /*border-radius: 5px;*/
+
   width: 100%; /* S'adapte à la largeur du conteneur parent */
   background-color: #fff;
   font-family: "Work Sans", sans-serif;
@@ -727,10 +693,10 @@ figure {
 }
 
 .separator-line {
-  width: 500px; /* largeur */
-  height: 1px; /* Épaisseur de la ligne */
-  background-color: #b3b3b3; /* Couleur de la ligne */
-  margin: 15px 0; /* Espacement autour de la ligne */
+  width: 500px;
+  height: 1px;
+  background-color: #b3b3b3;
+  margin: 15px 0;
   margin-bottom: 50px;
 }
 
@@ -756,14 +722,13 @@ figure {
 
 .error-message {
   display: none; /* Tous les messages d'erreur sont cachés par défaut */
-  color: red;    /* Si affichés, ils seront en rouge */
+  color: red; /* Si affichés, ils seront en rouge */
   font-size: 0.9em;
   margin-top: 5px;
   background-color: inherit;
 }
 
-#title-photo-modal:focus, 
+#title-photo-modal:focus,
 #category:focus {
-  outline: none; /* Supprime le cadre bleu par défaut */
-  /*box-shadow: none;  Supprime également l'ombre si elle existe */
+  outline: none; /* Supprime le cadre par défaut */
 }
